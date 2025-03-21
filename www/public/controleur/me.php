@@ -1,8 +1,6 @@
 <?php
-require_once "../modele/Session.php";
-checkSession();
 
 $title = "Mon compte";
 $css = ["style.css"];
-$page = "../vue/me.php";
-include_once "../components/page.php";
+$page = $_SERVER["DOCUMENT_ROOT"]."../libs/vue/me.php";
+include_once $_SERVER["DOCUMENT_ROOT"]."../libs/components/page.php";

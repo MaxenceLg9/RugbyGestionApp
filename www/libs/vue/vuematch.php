@@ -1,23 +1,23 @@
-<?php use libs\modele\Resultat;
-
-include_once "../components/nav.php";
-
-function createPlayerCard($joueur,$iv): string
-{
-    if($joueur->getUrl() == ""){
-        $url = "../resources/img/data/default.png";
-    }else{
-        $url = $joueur->getUrl();
-    }
-    $class = $joueur->isPremiereLigne() ? 'premiere-ligne': '';
-    return '<div class="player-card '.$class.'" data-id="1">
-        <img src="' .$url.'" alt="Profile picture of '.$joueur->getNom() . " " . $joueur->getPrenom().'" width="40" height="40">
-        <p>'.$joueur->getNom() . ' ' . $joueur->getPrenom().'</p>
-        <input type="hidden" name="idJoueur" value="'.htmlspecialchars(openssl_encrypt($joueur->getIdJoueur(),'aes-256-cbc',$_SESSION['csrf_token'],0,$iv)).'">
-        <input type="hidden" name="premiereLigne" value="'.$joueur->isPremiereLigne().'">
-    </div>';
-}
-?>
+<?php //use libs\modele\Resultat;
+//
+//include_once "../components/nav.php";
+//
+//function createPlayerCard($joueur,$iv): string
+//{
+//    if($joueur->getUrl() == ""){
+//        $url = "../resources/img/data/default.png";
+//    }else{
+//        $url = $joueur->getUrl();
+//    }
+//    $class = $joueur->isPremiereLigne() ? 'premiere-ligne': '';
+//    return '<div class="player-card '.$class.'" data-id="1">
+//        <img src="' .$url.'" alt="Profile picture of '.$joueur->getNom() . " " . $joueur->getPrenom().'" width="40" height="40">
+//        <p>'.$joueur->getNom() . ' ' . $joueur->getPrenom().'</p>
+//        <input type="hidden" name="idJoueur" value="'.htmlspecialchars(openssl_encrypt($joueur->getIdJoueur(),'aes-256-cbc',$_SESSION['csrf_token'],0,$iv)).'">
+//        <input type="hidden" name="premiereLigne" value="'.$joueur->isPremiereLigne().'">
+//    </div>';
+//}
+//?>
 <div class="main">
     <header class="header-section">
         <h1>Faites votre feuille de match</h1>
