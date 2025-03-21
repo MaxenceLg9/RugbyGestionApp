@@ -1,0 +1,91 @@
+/* General Styles */
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url("/resources/img/data/try.png"),linear-gradient(135deg, #1c1c61, rgb(32, 32, 200)) no-repeat center;
+    background-size: cover; /* Image will scale to cover the entire screen */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Form Container */
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /*gap: 10px;*/
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+}
+
+/* Input Fields */
+input {
+    padding: 10px;
+    border: 1px solid #888888;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #25252b;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Buttons */
+button {
+    background-color: #dc0822;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #780510;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    form {
+        width: 90%;
+    }
+}
+
+div.form {
+    width: 40%;
+    color: white;
+    background: #18181b;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow: scroll;
+    gap: 15px;
+}
+
+div.add{
+    display: flex;
+    gap: 10px;
+}
+
+strong#toggle {
+    cursor: pointer;
+    color: #8453fd;
+}
+
+h1,p,body {
+    margin: 0;
+}
