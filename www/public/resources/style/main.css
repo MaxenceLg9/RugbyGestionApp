@@ -4,8 +4,6 @@ html{
 }
 
 body {
-    /*background: linear-gradient(100deg, #00afff, #a63f3f88);*/
-    background-color: white;
     /*color: #fff;*/
     color: black;
     margin: 0;
@@ -25,10 +23,12 @@ body {
     justify-content: center;
 }
 
-.nav-container{
-    width: 10%;
-    min-width: 157px;
-}
 img{
     object-fit: cover;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
