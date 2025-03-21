@@ -1,7 +1,3 @@
-<?php use libs\modele\MatchDeRugby;
-
-include_once "../components/nav.php" ?>
-
 <div class="main">
     <article>
         <h1>Informations sur le joueur</h1>
@@ -11,28 +7,28 @@ include_once "../components/nav.php" ?>
         <div class="first-section">
             <section class="player-identity">
                 <?php
-                $url = empty($joueur->getUrl()) ? "../resources/img/data/default.png" : $joueur->getUrl();
+                $url = empty($joueur["url"]) ? "/resources/img/data/default.png" : "/resources/img/joueurs/".$joueur["url"];
                 ?>
                 <h2>Identité du joueur</h2>
 
                 <div class="identity-info">
-                    <img src="<?= htmlspecialchars($url) ?>" alt="Photo de <?= htmlspecialchars($joueur->getNom()) ?>" width="200" height="200">
+                    <img src="<?= htmlspecialchars($url) ?>" alt="Photo de <?= htmlspecialchars($joueur["nom"]) ?>" width="200" height="200">
                     <div class="identity-details">
-                        <p><strong>Nom :</strong> <?= htmlspecialchars($joueur->getNom()) ?></p>
-                        <p><strong>Prénom :</strong> <?= htmlspecialchars($joueur->getPrenom()) ?></p>
-                        <p><strong>Date de Naissance :</strong> <?= htmlspecialchars($joueur->getDateNaissance()->format('d-m-Y')) ?></p>
+                        <p><strong>Nom :</strong> <?= htmlspecialchars($joueur["nom"]) ?></p>
+                        <p><strong>Prénom :</strong> <?= htmlspecialchars($joueur["prenom"]) ?></p>
+                        <p><strong>Date de Naissance :</strong> <?= htmlspecialchars($joueur["dateNaissance"]) ?></p>
                     </div>
                 </div>
             </section>
             <section class="player-info">
                 <h2>Caractéristiques</h2>
-                <p><strong>Numéro de Licence :</strong> <?= htmlspecialchars($joueur->getNumeroLicense()) ?></p>
-                <p><strong>Taille :</strong> <?= htmlspecialchars($joueur->getTaille()) ?> cm</p>
-                <p><strong>Poids :</strong> <?= htmlspecialchars($joueur->getPoids()) ?> kg</p>
-                <p><strong>Poste Préféré :</strong> <?= htmlspecialchars($joueur->getPostePrefere()->value) ?></p>
-                <p><strong>Première Ligne :</strong> <?= $joueur->isPremiereLigne() ? 'Oui' : 'Non' ?></p>
-                <p><strong>Statut :</strong> <?= htmlspecialchars($joueur->getStatut()->name) ?></p>
-                <p><strong>Commentaire :</strong> <?= nl2br(htmlspecialchars($joueur->getCommentaire())) ?></p>
+                <p><strong>Numéro de Licence :</strong> <?= htmlspecialchars($joueur["numeroLicence"]) ?></p>
+                <p><strong>Taille :</strong> <?= htmlspecialchars($joueur["taille"]) ?> cm</p>
+                <p><strong>Poids :</strong> <?= htmlspecialchars($joueur["poids"]) ?> kg</p>
+                <p><strong>Poste Préféré :</strong> <?= htmlspecialchars($joueur["postePrefere"]) ?></p>
+                <p><strong>Première Ligne :</strong> <?= $joueur["estPremiereLigne"]?></p>
+                <p><strong>Statut :</strong> <?= htmlspecialchars($joueur["statut"]) ?></p>
+                <p><strong>Commentaire :</strong> <?= nl2br(htmlspecialchars($joueur["commentaire"])) ?></p>
             </section>
         </div>
 
