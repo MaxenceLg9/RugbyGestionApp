@@ -1,223 +1,114 @@
-.div-column {
-    flex-direction: column;
+/* General Layout */
+html, body {
+    background-color: #f4f4f4;
 }
 
-.main{
+.main {
     display: flex;
-    width: 88%;
-    padding : 1%;
-    background: #9bd3ff22;
-    align-items: center;
+    width: 83%;
+    padding: 2%;
     flex-direction: column;
-    gap: 15px;
-    min-height: 96%;
+    gap: 20px;
     overflow: auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-p, h1, h2, h3, h4, h5, h6{
-    margin: 0;
-    height: fit-content;
-    width: fit-content;
+/* Header Section */
+.header-section {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 2px solid #ccc;
 }
 
-.header-section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    width: 100%;
-    border-bottom: 1px solid black;
-}
-
-.strong-bienvenue{
+.strong-bienvenue {
     color: #672323;
 }
 
-section{
-    display: flex;
-    border: black 1px solid;
-    padding: 1%;
-    flex-direction: column;
-    /*justify-items: start;*/
-    gap: 15px;
-    align-content: center;
-    align-items: center;
-    /*side rounded*/
+/* Section Styles */
+.section-index {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 20px;
     border-radius: 10px;
-    margin : 1%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-form {
+/* Quick Actions */
+.actions {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-article {
-    display: flex;
-    flex-wrap: wrap;
-    overflow: auto;
-}
-
-div.statut {
-    height: 70px;
-}
-
-a {
-    display: flex;
-    text-align: center;
-}
-
-a > p {
-    width: 100%;
+    gap: 15px;
+    justify-content: center;
 }
 
 .button, button, input[type=submit] {
-    width: 90%; /* Slightly wider for better alignment */
-    margin: 5px 0; /* Space between buttons */
-    font-family: Bahnschrift, Arial, sans-serif;
-    min-height: 35px; /* Increased for a better look */
-    border: none;
-    color: white;
-    max-width: 400px;
+    padding: 10px 15px;
     font-weight: bold;
     border-radius: 5px;
-    font-size: 16px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: 0.3s;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    text-decoration: none;
 }
 
 .button:hover, button:hover {
-    cursor: pointer;
-    opacity: 70%;
-    transform: scale(1.03); /* Subtle hover animation */
-    color: #ffffff; /* Keep the text white for consistency */
-
+    opacity: 0.8;
+    transform: scale(1.05);
 }
 
-/* Specific button styles */
-.modify {
-    background: #15ad00; /* Green for modify */
-}
-
-.button.saisie{
-    background: #ff8c00; /* Orange for saisie */
-}
-
-button.delete {
-    background: red; /* Red for delete */
-}
-
-/* Add consistent styling for 'add' button */
 .button.add {
-    min-width: 300px; /* Wider for better readability */
-    width: 400px;
-    background: #1037caDD; /* Blue for add button */
-}
-
-button.add:hover, .button.add:hover {
-    transform: scale(1.02); /* Slightly larger on hover */
-}
-
-.forms {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
-.forms * {
-    width: 100%;
-}
-
-a{
-    text-decoration: none;
+    background: #1037ca;
     color: white;
-    text-align: center;
-    align-items: center;
 }
 
-
-.section-index{
-    background-color: #5a5a5a33;
-}
-
-/* Player notes styling */
-.profile-picture {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    margin-bottom: 10px;
-}
-
-.section-card {
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-    width: 300px;
-    background: #1c65b6BB;
+.button.delete {
+    background: red;
     color: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.9);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.section-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-.player-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.form-row {
-    display: flex;
-    width: 90%;
-    align-items: center;
-    margin-top: 10px;
-    justify-content: right;
-}
-
-.button.save-note {
+.button.modify {
     background: #15ad00;
-    margin-top: 10px;
-    width: 80%;
-    padding: 10px;
-    border: none;
     color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.button.save-note:hover {
-    cursor: pointer;
-    opacity: 70%;
-    transform: scale(1.03);
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: #fff;
 }
 
-.article-list {
-    background: #ffc0c0AA;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 5);
-    flex-direction: column;
-    align-items: center;
-    padding: 1%;
-    flex-wrap: nowrap;
-    margin: 1%;
-    width: 95%;
-    height: 90%;
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
 }
 
-table{
+th {
+    background: #1037ca;
+    color: white;
     text-align: left;
-    border-spacing: 20px;
-    color: #2f2f2f;
 }
 
-tr {
-    border-bottom: 1px solid white;
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main {
+        width: 95%;
+    }
+    .actions {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+#team-performance{
+    display: flex;
+    gap: 25px;
+    justify-content: space-evenly;
 }
