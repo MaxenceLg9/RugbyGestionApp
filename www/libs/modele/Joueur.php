@@ -2,7 +2,7 @@
 
 namespace Joueur {
 
-    require '/php/vendor/autoload.php';
+    require $_SERVER["DOCUMENT_ROOT"]."/../vendor/autoload.php";
     use GuzzleHttp\Client;
     function getData(string $idJoueur): array {
 

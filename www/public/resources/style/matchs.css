@@ -20,17 +20,7 @@
 }
 
 /* Specific button styles */
-.modify {
-    background: #15ad00; /* Green for modify */
-}
 
-.button.saisie{
-    background: #ff8c00; /* Orange for saisie */
-}
-
-button.delete {
-    background: red; /* Red for delete */
-}
 
 /* Add consistent styling for 'add' button */
 button.add {

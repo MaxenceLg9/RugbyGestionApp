@@ -3,7 +3,7 @@
     <article>
         <!-- Welcome Section -->
         <section class="header-section section-index">
-            <h1>Bienvenue <strong class="strong-bienvenue"> <!-- PHP Code for Dynamic Name --> </strong> !</h1>
+            <h2>Bienvenue <strong class="strong-bienvenue"> <!-- PHP Code for Dynamic Name --> </strong> !</h2>
             <p>
                 RugbyGestionPlus vous permet de gérer efficacement votre équipe de rugby et d’améliorer vos performances.
                 Accédez à vos matchs, analysez les résultats et préparez vos stratégies gagnantes !
@@ -13,7 +13,7 @@
         <!-- KPI Section -->
         <section class="section-index" id="team-performance">
             <div id="stats-collective">
-                <h1>Performance de l'équipe</h1>
+                <h2>Performance de l'équipe</h2>
                 <div class="stat-grid">
                     <ul>
                         <li><div class="stat-card">Victoires: <span>12</span></div></li>
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div id="stats-individuelles">
-                <h1>Joueurs les plus utilisés</h1>
+                <h2>Joueurs les plus utilisés</h2>
                 <div class="stat-grid">
                     <ul>
                         <li><div class="stat-card">Victoires: <span>12</span></div></li>
@@ -38,25 +38,60 @@
 
         <!-- Recent Results Section -->
         <section class="section-index" id="recent-results">
-            <h1>Vos derniers résultats</h1>
-            <ul>
-                <li><strong>15/03/2025 - 14:00</strong> - <em>Team A</em> (Domicile) : <span class='resultat'>Victoire</span></li>
-                <li><strong>08/03/2025 - 16:00</strong> - <em>Team B</em> (Extérieur) : <span class='resultat'>Défaite</span></li>
-            </ul>
+            <h2>Vos derniers résultats</h2>
+            <table>
+                <thead><tr></tr></thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <strong>15/03/2025 - 14:00</strong> - <em>Team A</em> (Domicile) : <span class='resultat'>Victoire</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>08/03/2025 - 16:00</strong> - <em>Team B</em> (Extérieur) : <span class='resultat'>Défaite</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </section>
 
         <!-- Upcoming Matches Section -->
         <section class="section-index" id="upcoming-matches">
-            <h1>Matchs à venir</h1>
-            <ul>
-                <li><strong>22/03/2025 - 18:00</strong> - vs <em>Team C</em> (Domicile)</li>
-                <li><strong>29/03/2025 - 15:00</strong> - vs <em>Team D</em> (Extérieur)</li>
-            </ul>
+            <h2>Matchs à venir</h2>
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="match-info">
+                            <strong>22/03/2025 - 18:00</strong> - vs <em>Team C</em> (Domicile)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="action">
+                            <a href="#" class="button modify">Saisir la feuille de match</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="match-info">
+                            <strong>29/03/2025 - 15:00</strong> - vs <em>Team D</em> (Extérieur)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="action">
+                            <a href="#" class="button modify">Saisir la feuille de match</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </section>
 
         <!-- Quick Actions Section -->
         <section class="section-index">
-            <h1>Actions rapides</h1>
+            <h2>Actions rapides</h2>
             <div class="forms">
                 <a href="/" class="button add">Ajouter un match</a>
                 <a href="/" class="button add">Ajouter un joueur</a>

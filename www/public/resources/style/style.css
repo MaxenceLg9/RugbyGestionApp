@@ -3,6 +3,10 @@ html, body {
     background-color: #f4f4f4;
 }
 
+h1 {
+    font-size: 50px;
+}
+
 .main {
     display: flex;
     width: 83%;
@@ -73,42 +77,53 @@ html, body {
     color: white;
 }
 
+.button.saisie{
+    background: #ff8c00; /* Orange for saisie */
+}
+
+
+#team-performance{
+    display: flex;
+    gap: 25px;
+    justify-content: space-evenly;
+}
+
+
+td {
+    vertical-align: middle; /* Align content vertically */
+}
+
+/* Ensure flex inside but not on <td> */
+.match-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.action {
+    display: flex;
+    justify-content: center; /* Align button to the right */
+}
+
+
 /* Tables */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
     background: #fff;
+    text-align: left;
 }
 
 table, th, td {
-    border: 1px solid #ddd;
     padding: 10px;
 }
 
 th {
-    background: #1037ca;
-    color: white;
+    color: black;
     text-align: left;
 }
 
 tr:nth-child(even) {
     background: #f9f9f9;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .main {
-        width: 95%;
-    }
-    .actions {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-#team-performance{
-    display: flex;
-    gap: 25px;
-    justify-content: space-evenly;
 }
