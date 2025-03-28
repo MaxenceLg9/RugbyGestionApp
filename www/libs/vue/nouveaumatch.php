@@ -1,6 +1,8 @@
-<?php use libs\modele\Lieu;
+<?php
 
-require "../components/nav.php" ?>
+require $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php";
+
+use function Enum\getLieux; ?>
 
 <div class="main div-column">
     <article class="article-list">
@@ -15,8 +17,8 @@ require "../components/nav.php" ?>
                 <div class="form-row">
                     <label for="lieu">Lieu du match</label>
                     <select id="lieu" name="lieu" required>
-                        <?php foreach (Lieu::cases() as $lieu) { ?>
-                            <option value="<?= $lieu->name ?>"><?= htmlspecialchars($lieu->name) ?></option>
+                        <?php foreach (getLieux() as $lieu) { ?>
+                            <option value="<?= $lieu ?>"><?= htmlspecialchars($lieu) ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -27,7 +29,6 @@ require "../components/nav.php" ?>
 
                 <input type="hidden" name="idMatch" value="<?= 0 ?>">
                 <input type="hidden" name="type" value="ajout">
-                <input type="hidden" name="csrf_token" value="<?=htmlspecialchars(hash_hmac("sha256","0".$_SESSION['csrf_token']."ajout",$_SESSION['csrf_token']))?>">
                 <button type="submit" class="ajout">Ajouter le match</button>
             </form>
         </section>

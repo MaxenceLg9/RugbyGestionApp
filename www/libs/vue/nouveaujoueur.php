@@ -1,7 +1,6 @@
-<?php use libs\modele\Poste;
-use libs\modele\Statut;
+<?php
 
-require "../components/nav.php" ?>
+require $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php" ?>
 
 <div class="main div-column">
     <article class="article-list">
@@ -36,16 +35,16 @@ require "../components/nav.php" ?>
                 <div class="form-row">
                     <label for="statut">Statut</label>
                     <select id="statut" name="statut" required>
-                        <?php foreach (Statut::cases() as $statut) { ?>
-                            <option value="<?= $statut->name ?>"><?= htmlspecialchars($statut->name) ?></option>
+                        <?php foreach (Enum\getStatuts() as $statut) { ?>
+                            <option value="<?= $statut ?>"><?= htmlspecialchars($statut) ?></option>
                         <?php } ?>
                     </select>
                 </div>
                 <div class="form-row">
                     <label for="postePrefere">Poste préféré</label>
                     <select id="postePrefere" name="postePrefere" required>
-                        <?php foreach (Poste::cases() as $poste) { ?>
-                            <option value="<?= $poste->name?>"><?= htmlspecialchars($poste->value) ?></option>
+                        <?php foreach (Enum\getPostes() as $poste) { ?>
+                            <option value="<?= $poste?>"><?= htmlspecialchars($poste) ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -63,8 +62,6 @@ require "../components/nav.php" ?>
 
                 <input type="hidden" name="type" value="ajout">
                 <input type="hidden" name="idJoueur" value="0">
-                <input type="hidden" name="csrf_token" value="<?=htmlspecialchars(hash_hmac("sha256","0".$_SESSION['csrf_token']."ajout",$_SESSION['csrf_token']))?>">
-
                 <button type="submit" class="ajout">Ajouter le joueur</button>
             </form>
         </section>
