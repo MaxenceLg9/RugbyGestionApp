@@ -13,4 +13,3 @@ RewriteRule ^(.*)$ $1.php [L,QSA]
 RewriteCond %{REQUEST_URI} !^/resources/
 RewriteCond %{REQUEST_URI} !^/controleur/
 RewriteRule ^(.*)$ /controleur/$1 [L,QSA]
-
