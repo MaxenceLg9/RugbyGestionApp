@@ -5,7 +5,7 @@ require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Joueur.php";
 use function Joueur\getData;
 
 
-$joueur = (getData(2));
+$joueur = (getData($_GET["idJoueur"]));
 
 //header("Content-Type: application/json");
 //echo json_encode($joueur);
@@ -19,5 +19,5 @@ $stats['avgNote'] = 0;
 
 $title = "Joueur";
 $css = ["style.css","gerer.css"];
-$page = $_SERVER["DOCUMENT_ROOT"]."../libs/vue/vuejoueur.php";
+$page = $_SERVER["DOCUMENT_ROOT"]."../libs/vue/test.php";
 include_once $_SERVER["DOCUMENT_ROOT"]."../libs/components/page.php";
