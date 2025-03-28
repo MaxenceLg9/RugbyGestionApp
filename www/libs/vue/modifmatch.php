@@ -1,4 +1,4 @@
-<?php require "../components/nav.php" ?>
+<?php require$_SERVER["DOCUMENT_ROOT"]."../libs/components/nav.php" ?>
 
 <div class="main div-column">
     <h1>Modifier un match</h1>

@@ -1,7 +1,6 @@
-<?php use libs\modele\Poste;
-use libs\modele\Statut;
+<?php
 
-require "../components/nav.php" ?>
+require $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php" ?>
 
 <div class="main div-column">
     <article class="article-list">
@@ -10,7 +9,7 @@ require "../components/nav.php" ?>
             <h3>Entrez les informations du joueur à modifier</h3>
             <h3>Joueur : <?= htmlspecialchars($joueur->getNom() . " modifierjoueur.php" . $joueur->getPrenom()) ?></h3>
             <?php
-            $url = empty($joueur->getUrl()) ? "../resources/img/data/default.png" : $joueur->getUrl();
+            $url = empty($joueur->getUrl()) ?$_SERVER["DOCUMENT_ROOT"]."../libs/resources/img/data/default.png" : $joueur->getUrl();
             ?>
             <img src="<?=$url?>" alt="Photo de <?= htmlspecialchars($joueur->getNom() . " modifierjoueur.php" . $joueur->getPrenom()) ?>" width="200" height="200">
             <form action="gererjoueur.php" method="post">
