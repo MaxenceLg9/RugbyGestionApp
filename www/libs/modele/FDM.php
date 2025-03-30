@@ -13,7 +13,7 @@ namespace FDM {
             'verify' => false
         ]);
 
-        $response = $client->get('/fdm.php',[
+        $response = $client->get('/fdm',[
             'query' => [
                 'idJoueur' => $idJoueur,
             ],

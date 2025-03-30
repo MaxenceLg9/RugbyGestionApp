@@ -12,7 +12,7 @@ namespace Joueur {
             'verify' => false
         ]);
 
-        $response = $client->get('/joueurs.php',[
+        $response = $client->get('/joueurs',[
             'query' => [
                 'idJoueur' => $idJoueur,
             ],

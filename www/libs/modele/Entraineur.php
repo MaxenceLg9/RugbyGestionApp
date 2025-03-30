@@ -11,7 +11,7 @@ namespace Entraineur {
             'timeout'  => 2.0,
         ]);
 
-        $response = $client->request('GET', '/joueurs.php');
+        $response = $client->request('GET', '/entraineurs');
         return json_decode($response->getBody(),true);
     }
 }

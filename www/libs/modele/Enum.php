@@ -5,10 +5,13 @@ namespace Enum {
     require $_SERVER["DOCUMENT_ROOT"]."/../vendor/autoload.php";
     use GuzzleHttp\Client;
 
+
     function getPostes():array{
+
         $client = new Client([
-            'base_uri' => 'http://rugbygestion.api',
+            'base_uri' => 'https://rugbygestionapi.alwaysdata.net/',
             'timeout'  => 2.0,
+            'verify' => false
         ]);
 
         $response = $client->get('/enums.php',[
@@ -25,8 +28,9 @@ namespace Enum {
 
     function getResultats():array{
         $client = new Client([
-            'base_uri' => 'http://rugbygestion.api',
+            'base_uri' => 'https://rugbygestionapi.alwaysdata.net/',
             'timeout'  => 2.0,
+            'verify' => false
         ]);
 
         $response = $client->get('/enums.php',[
@@ -43,8 +47,9 @@ namespace Enum {
 
     function getStatuts():array{
         $client = new Client([
-            'base_uri' => 'http://rugbygestion.api',
+            'base_uri' => 'https://rugbygestionapi.alwaysdata.net/',
             'timeout'  => 2.0,
+            'verify' => false
         ]);
 
         $response = $client->get('/enums.php',[
@@ -61,8 +66,9 @@ namespace Enum {
 
     function getLieux():array{
         $client = new Client([
-            'base_uri' => 'http://rugbygestion.api',
+            'base_uri' => 'https://rugbygestionapi.alwaysdata.net/',
             'timeout'  => 2.0,
+            'verify' => false
         ]);
 
         $response = $client->get('/enums.php',[
