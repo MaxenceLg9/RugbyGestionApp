@@ -22,6 +22,8 @@ async function getJoueurs() {
 }
 
 async function supprimer(idJoueur){
+    if(!confirm("Voulez-vous vraiment supprimer ce joueur ?"))
+        return;
     try {
         const response = await $.ajax('http://rugbygestion.api/joueurs',{
             method: "DELETE",

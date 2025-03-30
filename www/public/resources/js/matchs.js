@@ -22,6 +22,8 @@ async function getMatchs() {
 }
 
 async function supprimer(idMatch){
+    if(!confirm("Voulez-vous vraiment supprimer ce match ?"))
+        return;
     try {
         const response = await $.ajax('http://rugbygestion.api/matchs',{
             method: "DELETE",
