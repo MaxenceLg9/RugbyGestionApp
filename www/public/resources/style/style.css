@@ -1,15 +1,15 @@
 div.main {
     display: flex;
     width: 83%;
-    padding: 2%;
-    padding-bottom: 0;
+    padding: 2% 2% 0;
     flex-direction: column;
     gap: 20px;
-    overflow: auto;
-    background: white;
+    /*overflow: auto;*/
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 5px;
+    background: #1b1d28;
+    align-items: center;
 }
 
 .background {
@@ -19,4 +19,110 @@ div.main {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+article{
+    width: 100%;
+    overflow-y: auto;
+}
+
+table, th, td {
+    padding: 5px;
+    background: transparent;
+    align-items: baseline;
+    /*vertical-align: top;*/
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    text-align: left;
+}
+
+th {
+    color: #426da9;
+    text-align: left;
+}
+
+img.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin-bottom: 10px;
+}
+
+section {
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button:hover, button:hover {
+    cursor: pointer;
+    opacity: 70%;
+    transform: scale(1.03);
+    color: #ffffff;
+}
+
+.button.saisie {
+    background: #ff8c00;
+}
+
+button.delete {
+    background: red;
+}
+
+.button.add, button.add  {
+    background: #1037ca;
+    color: white;
+}
+
+.button.modify, button.modify {
+    background: #15ad00;
+    color: white;
+}
+
+button.add:hover, .button.add:hover {
+    transform: scale(1.02);
+}
+
+.button, button, input[type=submit] {
+    width: 90%;
+    margin: 5px 0;
+    font-family: Bahnschrift, Arial, sans-serif;
+    min-height: 35px;
+    border: none;
+    color: white;
+    max-width: 400px;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    height: fit-content;
+    width: fit-content;
+}
+
+.forms {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.forms * {
+    width: 100%;
 }
