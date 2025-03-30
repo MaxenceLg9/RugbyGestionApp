@@ -2,19 +2,79 @@
 
 namespace Enum {
 
+    require $_SERVER["DOCUMENT_ROOT"]."/../vendor/autoload.php";
+    use GuzzleHttp\Client;
+
     function getPostes():array{
-        return [];
+        $client = new Client([
+            'base_uri' => 'http://rugbygestion.api',
+            'timeout'  => 2.0,
+        ]);
+
+        $response = $client->get('/enums.php',[
+            'query' => [
+                'value' => "postes",
+            ],
+            'headers' => [
+                'Authorization' => $_COOKIE["token"] ?? "",
+                'Accept' => 'application/json',
+            ]
+        ]);
+        return json_decode($response->getBody(),true)["data"];
     }
 
     function getResultats():array{
-        return [];
+        $client = new Client([
+            'base_uri' => 'http://rugbygestion.api',
+            'timeout'  => 2.0,
+        ]);
+
+        $response = $client->get('/enums.php',[
+            'query' => [
+                'value' => "resultats",
+            ],
+            'headers' => [
+                'Authorization' => $_COOKIE["token"] ?? "",
+                'Accept' => 'application/json',
+            ]
+        ]);
+        return json_decode($response->getBody(),true)["data"];
     }
 
     function getStatuts():array{
-        return [];
+        $client = new Client([
+            'base_uri' => 'http://rugbygestion.api',
+            'timeout'  => 2.0,
+        ]);
+
+        $response = $client->get('/enums.php',[
+            'query' => [
+                'value' => "statuts",
+            ],
+            'headers' => [
+                'Authorization' => $_COOKIE["token"] ?? "",
+                'Accept' => 'application/json',
+            ]
+        ]);
+        return json_decode($response->getBody(),true)["data"];
     }
 
     function getLieux():array{
-        return [];
+        $client = new Client([
+            'base_uri' => 'http://rugbygestion.api',
+            'timeout'  => 2.0,
+        ]);
+
+        $response = $client->get('/enums.php',[
+            'query' => [
+                'value' => "lieux",
+            ],
+            'headers' => [
+                'Authorization' => $_COOKIE["token"] ?? "",
+                'Accept' => 'application/json',
+            ]
+        ]);
+        return json_decode($response->getBody(),true)["data"];
     }
+
 }
