@@ -10,6 +10,7 @@ namespace FDM {
         $client = new Client([
             'base_uri' => 'https://rugbygestionapi.alwaysdata.net/',
             'timeout'  => 2.0,
+            'verify' => false
         ]);
 
         $response = $client->get('/fdm.php',[
