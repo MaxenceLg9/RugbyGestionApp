@@ -29,7 +29,7 @@ use function Enum\getLieux; ?>
 
                 <input type="hidden" name="idMatch" value="<?= 0 ?>">
                 <input type="hidden" name="type" value="ajout">
-                <button type="submit" class="ajout">Ajouter le match</button>
+                <button type="submit" class="add">Ajouter le match</button>
             </form>
         </section>
     </article>
