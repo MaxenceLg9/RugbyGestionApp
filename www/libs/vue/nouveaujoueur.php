@@ -21,8 +21,8 @@ require $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php" ?>
                     <td class="input"><input type="date" id="dateNaissance" name="dateNaissance" required"></td>
                 </tr>
                 <tr>
-                    <td><label for="numeroLicense">Numéro de licence</label></td>
-                    <td class="input"><input type="text" id="numeroLicense" name="numeroLicense" required"></td>
+                    <td><label for="numeroLicence">Numéro de licence</label></td>
+                    <td class="input"><input type="text" id="numeroLicence" name="numeroLicence" required"></td>
                 </tr>
                 <tr>
                     <td><label for="taille">Taille (cm)</label></td>
@@ -70,7 +70,7 @@ require $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php" ?>
                     <td class="input"><input type="text" class="textfield" name="commentaire" id="commentaire"/></td>
                 </tr>
             </table>
-            <button type="submit" class="add" onclick="gererJoueur('POST')">Modifier le joueur</button>
+            <button type="submit" class="add" onclick="gererJoueur('POST')">Ajouter le joueur</button>
         </section>
     </article>
     <script src="/resources/js/gererjoueur.js"></script>

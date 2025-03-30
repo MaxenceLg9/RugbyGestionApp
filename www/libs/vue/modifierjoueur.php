@@ -23,8 +23,8 @@ require $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php" ?>
                     <td class="input"><input type="date" id="dateNaissance" name="dateNaissance" required value="<?= htmlspecialchars($joueur["dateNaissance"]) ?>"></td>
                 </tr>
                 <tr>
-                    <td><label for="numeroLicense">Numéro de licence</label></td>
-                    <td class="input"><input type="text" id="numeroLicense" name="numeroLicense" required value="<?= htmlspecialchars($joueur["numeroLicence"]) ?>"></td>
+                    <td><label for="numeroLicence">Numéro de licence</label></td>
+                    <td class="input"><input type="text" id="numeroLicence" name="numeroLicence" required value="<?= htmlspecialchars($joueur["numeroLicence"]) ?>"></td>
                 </tr>
                 <tr>
                     <td><label for="taille">Taille (cm)</label></td>
@@ -72,6 +72,7 @@ require $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php" ?>
                     <td class="input"><input type="text" class="textfield" name="commentaire" id="commentaire" value="<?=$joueur["commentaire"]?>"/></td>
                 </tr>
             </table>
+            <input type="hidden" id="idJoueur" name="idJoueur" value="<?= htmlspecialchars($joueur["idJoueur"]) ?>">
             <button type="submit" class="add" onclick="gererJoueur('PUT')">Modifier le joueur</button>
         </section>
     </article>
