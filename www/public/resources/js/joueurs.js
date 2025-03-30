@@ -56,9 +56,9 @@ function createPlayerCard(player) {
                     <p>Poids : ${player.poids} kg</p>
                     <p>Statut : ${player.statut}</p>
                     <p>Poste préféré : ${player.postePrefere}</p>
-                    <p>Est première ligne : ${player.estPremiereLigne ? 'Oui' : 'Non'}</p>
+                    <p>Est première ligne : ${player.estPremiereLigne}</p>
                 </div>
-                <img src="${player.url}" alt="Photo de profil de ${player.nom} ${player.prenom}" width="80" height="80" class="identity-image">
+                <img src="${player.url}" alt="Photo de profil de ${player.nom} ${player.prenom}" width="80" height="80" class="identity-image profile-picture">
             </div>
             <div class="forms">
                 <!-- Consultation -->

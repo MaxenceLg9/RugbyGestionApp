@@ -80,16 +80,15 @@ function createMatchCard(match) {
         .addClass("forms saisie button")
         .append($("<p>").text("Voir la feuille de match"))
     );
-
-    // if (match.valider || match.isArchiveFDM) {
-    //     forms.append($("<p>").addClass("color-red").css("text-align", "center").text("Ce match est archivé et ne peut être modifié."));
-    // } else {
-    //     forms.append($("<a>")
-    //         .attr("href", `/gerermatch.php?type=modification&idMatch=${match.idMatch}`)
-    //         .addClass("forms modify button")
-    //         .append($("<p>").text("Modifier le match"))
-    //     );
-    // }
+    if (match.valider || match.archive) {
+        forms.append($("<p>").addClass("color-red").css("text-align", "center").text("Ce match est archivé et ne peut être modifié."));
+    } else {
+        forms.append($("<a>")
+            .attr("href", `/gerermatch.php?type=modification&idMatch=${match.idMatch}`)
+            .addClass("forms modify button")
+            .append($("<p>").text("Modifier le match"))
+        );
+    }
 
     // Delete button
     const deleteButton = $("<button>")
