@@ -4,7 +4,7 @@ namespace Joueur {
 
     require $_SERVER["DOCUMENT_ROOT"]."/../vendor/autoload.php";
     use GuzzleHttp\Client;
-    function getData(string $idJoueur): array {
+    function getJoueur(string $idJoueur): array {
 
         $client = new Client([
             'base_uri' => 'http://rugbygestion.api',
