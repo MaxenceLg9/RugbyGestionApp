@@ -5,13 +5,14 @@ html{
 
 body {
     /*color: #fff;*/
-    color: black;
+    color: #d3d3d3;
     margin: 0;
     display: flex;
     padding: 0;
     height: 100%;
     min-height: 100%;
     font-family: Bahnschrift, sans-serif;
+    background: linear-gradient(135deg, #1c1c61, rgb(32, 32, 200));
 }
 
 img{

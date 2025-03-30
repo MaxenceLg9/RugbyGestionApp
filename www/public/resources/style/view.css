@@ -25,8 +25,7 @@ form {
     font-size: 18px;
     max-width: 380px;
     background: rgb(22, 27, 46);
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.9);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,7 +42,6 @@ section:hover {
 /* Adjust typography for match details */
 h2 {
     margin-bottom: 10px;
-    color: #fff;
 }
 
 p {
@@ -51,7 +49,7 @@ p {
 }
 
 .color-red {
-    color: #672323;
+    color: #ff5151;
 }
 
 .article-card {
@@ -77,19 +75,14 @@ p {
     flex-direction: column;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    height: fit-content;
-    width: fit-content;
-}
-
 .header-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
     width: 100%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #ffffff;
+    padding-bottom: 15px;
 }
 
 .strong-bienvenue {
@@ -126,59 +119,6 @@ a > p {
     width: 100%;
 }
 
-.button, button, input[type=submit] {
-    width: 90%;
-    margin: 5px 0;
-    font-family: Bahnschrift, Arial, sans-serif;
-    min-height: 35px;
-    border: none;
-    color: white;
-    max-width: 400px;
-    font-weight: bold;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.button:hover, button:hover {
-    cursor: pointer;
-    opacity: 70%;
-    transform: scale(1.03);
-    color: #ffffff;
-}
-
-.modify {
-    background: #15ad00;
-}
-
-.button.saisie {
-    background: #ff8c00;
-}
-
-button.delete {
-    background: red;
-}
-
-.button.add {
-    min-width: 300px;
-    width: 400px;
-    background: #1037caDD;
-}
-
-button.add:hover, .button.add:hover {
-    transform: scale(1.02);
-}
-
-.forms {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.forms * {
-    width: 100%;
-}
-
 a {
     text-decoration: none;
     color: white;
@@ -188,14 +128,6 @@ a {
 
 .section-index {
     background-color: #5a5a5a33;
-}
-
-.profile-picture {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    margin-bottom: 10px;
 }
 
 .player-list {
@@ -251,8 +183,4 @@ table {
 
 tr {
     border-bottom: 1px solid white;
-}
-
-img {
-    border-radius: 50%;
 }

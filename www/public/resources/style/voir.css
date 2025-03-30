@@ -1,0 +1,52 @@
+.first-section {
+    display: flex;
+    gap: 10%;
+    margin-bottom: 30px;
+}
+
+.player-identity, .player-info, .player-stats, .match-participation {
+    width: 96%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.first-section > section {
+    width: 45%;
+}
+
+.identity-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.identity-info img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+}
+
+.identity-details {
+    text-align: left;
+}
+
+.identity-details p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.player-info p, .player-stats p, .match-participation p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.color-red {
+    color: red;
+}
+
+section {
+    background: #0d1117;
+    width: 45%;
+}
