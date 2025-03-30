@@ -8,7 +8,7 @@ namespace FDM {
     function getFDMPourJoueur(string $idJoueur): array {
 
         $client = new Client([
-            'base_uri' => 'http://rugbygestion.api',
+            'base_uri' => 'https://rugbygestionapi.alwaysdata.net/',
             'timeout'  => 2.0,
         ]);
 

@@ -9,7 +9,7 @@ formRegister.toggle()
 
 async function login(){
     try {
-        const response = await $.ajax("rugbygestion.auth/api/auth/", {
+        const response = await $.ajax("https://rugbygestionauth.alwaysdata.net/api/auth/", {
             method: "POST",
             contentType: "application/json", // Important for sending JSON
             data: JSON.stringify({
@@ -46,7 +46,7 @@ async function login(){
 
 async function register(){
     try {
-        const response = await $.ajax("rugbygestion.auth/api/auth/", {
+        const response = await $.ajax("https://rugbygestionauth.alwaysdata.net/api/auth/", {
             method: "POST",
             contentType: "application/json", // Important for sending JSON
             data: JSON.stringify({

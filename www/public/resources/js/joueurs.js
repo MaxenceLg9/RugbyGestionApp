@@ -2,7 +2,7 @@ let divJoueurs = $('article#joueurs');
 
 async function getJoueurs() {
     try {
-        const response = await $.ajax('http://rugbygestion.api/joueurs',{
+        const response = await $.ajax('https://rugbygestionapi.alwaysdata.net/joueurs',{
             method: "GET",
             contentType: "application/json", // Important for sending JSON
             dataType: "json",
@@ -25,7 +25,7 @@ async function supprimer(idJoueur){
     if(!confirm("Voulez-vous vraiment supprimer ce joueur ?"))
         return;
     try {
-        const response = await $.ajax('http://rugbygestion.api/joueurs',{
+        const response = await $.ajax('https://rugbygestionapi.alwaysdata.net/joueurs',{
             method: "DELETE",
             contentType: "application/json", // Important for sending JSON
             data: JSON.stringify({

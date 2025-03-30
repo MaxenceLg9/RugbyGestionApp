@@ -2,7 +2,7 @@ let divMatchs = $('article#matchs');
 
 async function getMatchs() {
     try {
-        const response = await $.ajax('http://rugbygestion.api/matchs',{
+        const response = await $.ajax('https://rugbygestionapi.alwaysdata.net/matchs',{
             method: "GET",
             contentType: "application/json", // Important for sending JSON
         })
@@ -25,7 +25,7 @@ async function supprimer(idMatch){
     if(!confirm("Voulez-vous vraiment supprimer ce match ?"))
         return;
     try {
-        const response = await $.ajax('http://rugbygestion.api/matchs',{
+        const response = await $.ajax('https://rugbygestionapi.alwaysdata.net/matchs',{
             method: "DELETE",
             contentType: "application/json", // Important for sending JSON
             data: JSON.stringify({

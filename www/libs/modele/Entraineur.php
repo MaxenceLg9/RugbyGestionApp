@@ -4,10 +4,10 @@ namespace Entraineur {
 
     require '/php/vendor/autoload.php';
     use GuzzleHttp\Client;
-    function getData(string $idEntraineur): array {
+    function getEntraineur(string $idEntraineur): array {
 
         $client = new Client([
-            'base_uri' => 'http://rugbygestion.api',
+            'base_uri' => 'https://rugbygestionapi.alwaysdata.net/',
             'timeout'  => 2.0,
         ]);
 

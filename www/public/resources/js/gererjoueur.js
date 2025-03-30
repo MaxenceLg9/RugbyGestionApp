@@ -12,7 +12,7 @@ async function gererJoueur(method){
     })
     console.log(data)
     try {
-        await $.ajax(`http://rugbygestion.api/joueurs`,{
+        await $.ajax(`https://rugbygestionapi.alwaysdata.net/joueurs`,{
             method: method,
             contentType: "application/json", // Important for sending JSON
             data: JSON.stringify(data),
