@@ -10,14 +10,21 @@ async function gererJoueur(method){
     select.each(function(){
         data[this.name] = this.value;
     })
-    console.log(data)
+    data["estPremiereLigne"] = parseInt(data["estPremiereLigne"]);
+    data["taille"] = parseInt(data["taille"]);
+    data["poids"] = parseInt(data["poids"]);
+    data["numeroLicence"] = parseInt(data["numeroLicence"]);
+
+    console.log(JSON.stringify(data))
     try {
-        await $.ajax(`https://rugbygestionapi.alwaysdata.net/joueurs`,{
+        const response = await $.ajax(`https://rugbygestionapi.alwaysdata.net/joueurs`,{
             method: method,
             contentType: "application/json", // Important for sending JSON
             data: JSON.stringify(data),
             headers:{"Authorization": Cookies.get("token")}
         })
+        console.log(response.data)
+        alert(response.response)
     } catch (xhr) {
         console.error(xhr.responseText);
         try {
