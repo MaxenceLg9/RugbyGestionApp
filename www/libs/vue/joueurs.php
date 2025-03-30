@@ -10,5 +10,5 @@
     </header>
     <article class="team-list article-card" id="joueurs">
     </article>
-    <script src="/resources/js/equipe.js"></script>
+    <script src="/resources/js/joueurs.js"></script>
 </div>
