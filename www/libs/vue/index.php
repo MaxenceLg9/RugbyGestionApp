@@ -69,7 +69,7 @@
                     </td>
                     <td>
                         <div class="action">
-                            <a href="#" class="button modify">Saisir la feuille de match</a>
+                            <a href="#" class="button modify"><p>Saisir la feuille de match</p></a>
                         </div>
                     </td>
                 </tr>
@@ -81,7 +81,7 @@
                     </td>
                     <td>
                         <div class="action">
-                            <a href="#" class="button modify">Saisir la feuille de match</a>
+                            <a href="#" class="button modify"><p>Saisir la feuille de match</p></a>
                         </div>
                     </td>
                 </tr>
@@ -92,9 +92,9 @@
         <!-- Quick Actions Section -->
         <section class="section-index">
             <h2>Actions rapides</h2>
-            <div class="forms">
-                <a href="/" class="button add">Ajouter un match</a>
-                <a href="/" class="button add">Ajouter un joueur</a>
+            <div class="forms actions">
+                <a href="/" class="button add"><p>Ajouter un match</p></a>
+                <a href="/" class="button add"><p>Ajouter un joueur</p></a>
             </div>
         </section>
     </article>
