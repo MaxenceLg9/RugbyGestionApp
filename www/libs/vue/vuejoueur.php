@@ -1,46 +1,87 @@
 <div class="main">
+    <h1>Informations sur le joueur</h1>
     <article>
-        <h1>Informations sur le joueur</h1>
-
         <!-- Player Info Section -->
+
         <div class="first-section">
-            <section class="player-identity" id="player-identity">
+            <section class="player-identity">
                 <h2>Identité du joueur</h2>
-                <div class="identity-info" id="identity-info">
-                    <img src="" alt="Photo de " width="200" height="200" id="player-photo">
-                    <div class="identity-details" id="identity-details">
-                        <p><strong>Nom :</strong> <span id="player-nom"></span></p>
-                        <p><strong>Prénom :</strong> <span id="player-prenom"></span></p>
-                        <p><strong>Date de Naissance :</strong> <span id="player-dateNaissance"></span></p>
+                <div class="identity-info">
+                    <img src="<?= htmlspecialchars($joueur["url"]) ?>" alt="Photo de <?= htmlspecialchars($joueur["nom"]) ?>" width="200" height="200">
+                    <div class="identity-details">
+                        <p><strong>Nom :</strong> <?= htmlspecialchars($joueur["nom"]) ?></p>
+                        <p><strong>Prénom :</strong> <?= htmlspecialchars($joueur["prenom"]) ?></p>
+                        <p><strong>Date de Naissance :</strong> <?= htmlspecialchars($joueur["dateNaissance"]) ?></p>
                     </div>
                 </div>
             </section>
-            <section class="player-info" id="player-info">
+            <section class="player-info">
                 <h2>Caractéristiques</h2>
-                <p><strong>Numéro de Licence :</strong> <span id="player-numeroLicence"></span></p>
-                <p><strong>Taille :</strong> <span id="player-taille"></span> cm</p>
-                <p><strong>Poids :</strong> <span id="player-poids"></span> kg</p>
-                <p><strong>Poste Préféré :</strong> <span id="player-postePrefere"></span></p>
-                <p><strong>Première Ligne :</strong> <span id="player-estPremiereLigne"></span></p>
-                <p><strong>Statut :</strong> <span id="player-statut"></span></p>
-                <p><strong>Commentaire :</strong> <span id="player-commentaire"></span></p>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td><strong>Numéro de Licence :</strong></td>
+                        <td><?= htmlspecialchars($joueur["numeroLicence"]) ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Taille :</strong> </td>
+                        <td><?= htmlspecialchars($joueur["taille"]) ?> cm</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Poids :</strong></td>
+                        <td><?= htmlspecialchars($joueur["poids"]) ?>kg</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Poste Préféré :</strong></td>
+                        <td><?= htmlspecialchars($joueur["postePrefere"]) ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Première Ligne :</strong></td>
+                        <td><?= $joueur["estPremiereLigne"]?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Statut :</strong></td>
+                        <td><?= htmlspecialchars($joueur["statut"]) ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Commentaire :</strong></td>
+                        <td><?= nl2br(htmlspecialchars($joueur["commentaire"])) ?></td>
+                    </tr>
+                    </tbody>
+                </table>
             </section>
         </div>
-
-        <!-- Player Statistics Section -->
-        <section class="player-stats" id="player-stats">
+        <section class="player-stats">
             <h2>Statistiques</h2>
-            <p><strong>Total de Matchs :</strong> <span id="stats-totalMatches"></span></p>
-            <p><strong>Matchs Gagnés :</strong> <span id="stats-matchesWon"></span></p>
-            <p><strong>Pourcentage de Victoires :</strong> <span id="stats-winPercentage"></span>%</p>
-            <p><strong>Note Moyenne :</strong> <span id="stats-avgNote"></span></p>
-        </section>
-
-        <!-- Match Participation Section -->
-        <section class="match-participation" id="match-participation">
+            <table>
+                <tbody>
+                <tr>
+                    <td><strong>Total de Matchs :</strong></td>
+                    <td><?= $stats['totalMatches'] ?></td>
+                </tr>
+                <tr>
+                    <td><strong>Matchs Gagnés :</strong></td>
+                    <td><?= $stats['matchesWon'] ?></td>
+                </tr>
+                <tr>
+                    <td><strong>Pourcentage de Victoires :</strong></td>
+                    <td><?= $stats["winPercentage"] ?>%</td>
+                </tr>
+                <tr>
+                    <td><strong>Note Moyenne :</strong></td>
+                    <td><?= number_format($stats['avgNote'], 2) ?></td>
+                </tr>
+                </tbody>
+            </table>
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            <p></p>
             <h2>Participation aux Matchs</h2>
-            <p class="color-red" id="no-matches-message" style="display: none;">Aucun match n'est enregistré pour ce joueur.</p>
-            <table id="matches-table" style="display: none;">
+            <?php if($stats["totalMatches"] == 0){
+                echo "<p class=\"color-red\">Aucun match n'est enregistré pour ce joueur.</p>";
+            }else{ ?>
+            <table>
                 <thead>
                 <tr>
                     <th>Date</th>
@@ -52,9 +93,28 @@
                     <th>Note</th>
                 </tr>
                 </thead>
-                <tbody id="matches-tbody">
+                <tbody>
+                <?php foreach ($matchs as $idMatch=>$match){
+                    $numero = array_keys($match["feuilles"])[0];
+                    $fdm = $match["feuilles"][$numero];
+                    ?>
+                    <tr>
+                        <td><?= htmlspecialchars($fdm["dateHeure"]) ?></td>
+                        <td><?= htmlspecialchars($fdm["adversaire"]) ?></td>
+                        <td><?= htmlspecialchars($fdm["lieu"]) ?></td>
+                        <td><?= htmlspecialchars($fdm["resultat"]) ?></td>
+                        <td><?= htmlspecialchars($numero) ?></td>
+                        <td><?= $fdm["estTitulaire"] ? 'Oui' : 'Non' ?></td>
+                        <?php if($fdm["note"] == -1){ ?>
+                            <td>Non noté</td>
+                        <?php }else{ ?>
+                            <td><?= number_format($fdm["note"]) ?></td>
+                        <?php } ?>
+                    </tr>
+                <?php } ?>
                 </tbody>
             </table>
         </section>
+        <?php } ?>
     </article>
 </div>

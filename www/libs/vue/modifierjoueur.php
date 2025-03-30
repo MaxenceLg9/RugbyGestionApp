@@ -3,99 +3,78 @@
 require $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php" ?>
 
 <div class="main div-column">
+    <h1>Modifier un joueur</h1>
     <article class="article-list">
-        <h1>Modifier un joueur</h1>
+        <h3>Entrez les informations du joueur à modifier</h3>
         <section class="full">
-            <h3>Entrez les informations du joueur à modifier</h3>
-            <h3>Joueur : <?= htmlspecialchars($joueur->getNom() . " modifierjoueur.php" . $joueur->getPrenom()) ?></h3>
-            <?php
-            $url = empty($joueur->getUrl()) ?$_SERVER["DOCUMENT_ROOT"]."../libs/resources/img/data/default.png" : $joueur->getUrl();
-            ?>
-            <img src="<?=$url?>" alt="Photo de <?= htmlspecialchars($joueur->getNom() . " modifierjoueur.php" . $joueur->getPrenom()) ?>" width="200" height="200">
-            <form action="gererjoueur.php" method="post">
-                <!-- Nom -->
-                <div class="form-row">
-                    <label for="nom">Nom</label>
-                    <input type="text" id="nom" name="nom" required value="<?= htmlspecialchars($joueur->getNom()) ?>">
-                </div>
-
-                <!-- Prénom -->
-                <div class="form-row">
-                    <label for="prenom">Prénom</label>
-                    <input type="text" id="prenom" name="prenom" required value="<?= htmlspecialchars($joueur->getPrenom()) ?>">
-                </div>
-
-                <!-- Date de naissance -->
-                <div class="form-row">
-                    <label for="dateNaissance">Date de naissance</label>
-                    <input type="date" id="dateNaissance" name="dateNaissance" required value="<?= htmlspecialchars($joueur->getDateNaissance()->format('Y-m-d')) ?>">
-                </div>
-
-                <!-- Numéro de licence -->
-                <div class="form-row">
-                    <label for="numeroLicense">Numéro de licence</label>
-                    <input type="text" id="numeroLicense" name="numeroLicense" required value="<?= htmlspecialchars($joueur->getNumeroLicense()) ?>">
-                </div>
-
-                <!-- Taille -->
-                <div class="form-row">
-                    <label for="taille">Taille (cm)</label>
-                    <input type="number" id="taille" name="taille" min="0" required value="<?= htmlspecialchars($joueur->getTaille()) ?>">
-                </div>
-
-                <!-- Poids -->
-                <div class="form-row">
-                    <label for="poids">Poids (kg)</label>
-                    <input type="number" id="poids" name="poids" min="0" required value="<?= htmlspecialchars($joueur->getPoids()) ?>">
-                </div>
-
-                <!-- Statut -->
-                <div class="form-row">
-                    <label for="statut">Statut</label>
-                    <select id="statut" name="statut" required>
-                        <?php foreach (Statut::cases() as $statut) { ?>
-                            <option value="<?= $statut->name ?>" <?= $joueur->getStatut() === $statut ? 'selected' : '' ?>>
-                                <?= htmlspecialchars($statut->name) ?>
-                            </option>
-                        <?php } ?>
-                    </select>
-                </div>
-
-                <!-- Poste préféré -->
-                <div class="form-row">
-                    <label for="postePrefere">Poste préféré</label>
-                    <select id="postePrefere" name="postePrefere" required>
-                        <?php foreach (Poste::cases() as $poste) { ?>
-                            <option value="<?= $poste->name ?>" <?= $joueur->getStatut() === $poste ? 'selected' : ''?>>
-                                <?= htmlspecialchars($poste->name) ?>
-                            </option>
-                        <?php } ?>
-                    </select>
-                </div>
-
-                <!-- Est première ligne -->
-                <div class="form-row">
-                    <label for="estPremiereLigne">Est première ligne</label>
-                    <select id="estPremiereLigne" name="estPremiereLigne" required>
-                        <option value="1" <?= $joueur->isPremiereLigne() ? 'selected' : '' ?>>Oui</option>
-                        <option value="0" <?= !$joueur->isPremiereLigne() ? 'selected' : '' ?>>Non</option>
-                    </select>
-                </div>
-
-                <div class="form-row">
-                    <label for="commentaire">Ajouter un commentaire sur le joueur (max 400carac.)</label>
-                    <input type="text" class="textfield" name="commentaire" id="commentaire" value="<?=$joueur->getCommentaire()?>"/>
-                </div>
-
-                <!-- Hidden fields -->
-                <input type="hidden" name="idJoueur" value="<?= htmlspecialchars($joueur->getIdJoueur()) ?>">
-                <input type="hidden" name="type" value="modification">
-                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(hash_hmac("sha256", $joueur->getIdJoueur() . $_SESSION['csrf_token'] . "modification", $_SESSION['csrf_token'])) ?>">
-
-                <!-- Submit button -->
-                <button type="submit" class="ajout">Modifier le joueur</button>
-            </form>
+            <h3>Joueur : <?= htmlspecialchars($joueur["nom"] . " " . $joueur["prenom"]) ?></h3>
+            <img src="<?=$joueur["url"]?>" alt="Photo de <?= htmlspecialchars($joueur["nom"] . " " . $joueur["prenom"]) ?>" width="200" height="200" class="profile-picture">
+            <table class="form-table">
+                <tr>
+                    <td><label for="nom">Nom</label></td>
+                    <td class="input"><input type="text" id="nom" name="nom" required value="<?= htmlspecialchars($joueur["nom"]) ?>"></td>
+                </tr>
+                <tr>
+                    <td><label for="prenom">Prénom</label></td>
+                    <td class="input"><input type="text" id="prenom" name="prenom" required value="<?= htmlspecialchars($joueur["prenom"]) ?>"></td>
+                </tr>
+                <tr>
+                    <td><label for="dateNaissance">Date de naissance</label></td>
+                    <td class="input"><input type="date" id="dateNaissance" name="dateNaissance" required value="<?= htmlspecialchars($joueur["dateNaissance"]) ?>"></td>
+                </tr>
+                <tr>
+                    <td><label for="numeroLicense">Numéro de licence</label></td>
+                    <td class="input"><input type="text" id="numeroLicense" name="numeroLicense" required value="<?= htmlspecialchars($joueur["numeroLicence"]) ?>"></td>
+                </tr>
+                <tr>
+                    <td><label for="taille">Taille (cm)</label></td>
+                    <td class="input"><input type="number" id="taille" name="taille" min="0" required value="<?= htmlspecialchars($joueur["taille"]) ?>"></td>
+                </tr>
+                <tr>
+                    <td><label for="poids">Poids (kg)</label></td>
+                    <td class="input"><input type="number" id="poids" name="poids" min="0" required value="<?= htmlspecialchars($joueur["poids"]) ?>"></td>
+                </tr>
+                <tr>
+                    <td><label for="statut">Statut</label></td>
+                    <td class="input">
+                        <select id="statut" name="statut" required>
+                            <?php foreach (Enum\getStatuts() as $key=>$statut) { ?>
+                                <option value="<?= $key ?>" <?= $joueur["statut"] === $statut ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($statut) ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="postePrefere">Poste préféré</label></td>
+                    <td class="input">
+                        <select id="postePrefere" name="postePrefere" required>
+                            <?php foreach (Enum\getPostes() as $key=>$poste) { ?>
+                                <option value="<?= $key ?>" <?= $joueur["postePrefere"] == $poste ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($poste) ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="estPremiereLigne">Est première ligne</label></td>
+                    <td class="input">
+                        <select id="estPremiereLigne" name="estPremiereLigne" required>
+                            <option value="1" <?= $joueur["estPremiereLigne"] === 'Oui' ? 'selected' : '' ?>>Oui</option>
+                            <option value="0" <?= $joueur["estPremiereLigne"] !== 'Oui' ? 'selected' : '' ?>>Non</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="commentaire">Ajouter un commentaire sur le joueur (max 400carac.)</label></td>
+                    <td class="input"><input type="text" class="textfield" name="commentaire" id="commentaire" value="<?=$joueur["commentaire"]?>"/></td>
+                </tr>
+            </table>
+            <button type="submit" class="add" onclick="gererJoueur('PUT')">Modifier le joueur</button>
         </section>
     </article>
+    <script src="/resources/js/gererjoueur.js"></script>
 </div>
 

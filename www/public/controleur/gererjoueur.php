@@ -1,18 +1,21 @@
 <?php
 
-//apiVerifyToken
+require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Joueur.php";
+require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/FDM.php";
+
+use function Joueur\getJoueur, FDM\getFDMPourJoueur;
 
 $type = $_POST["type"] ?? $_GET["type"] ?? null;
 
 if (!in_array($type, ["ajout", "suppression", "modification", "vue"])) {
-    header("Location: /equipe.php");
+    header("Location: /joueurs.php");
     die("Type de requête non défini.");
 }
 
 
-$idJoueur = $_POST["idJoueur"] ?? $_GET["idJoueur"] ?? null;
+$idJoueur = $_GET["idJoueur"] ?? null;
 if (!is_numeric($idJoueur)) {
-    header("Location: /equipe.php");
+    header("Location: /joueurs.php");
     die("ID joueur invalide.");
 }
 
@@ -22,14 +25,24 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         $title = "Ajouter un joueur";
         $page = $_SERVER["DOCUMENT_ROOT"]."../libs/vue/nouveaujoueur.php";
         include_once $_SERVER["DOCUMENT_ROOT"]."../libs/components/page.php";
-    } elseif ($type === "modification") {
-        $title = "Modifier un joueur";
-        $page = $_SERVER["DOCUMENT_ROOT"]."../libs/vue/modifierjoueur.php";
-        include_once$_SERVER["DOCUMENT_ROOT"]."../libs/components/page.php";
-    }elseif ($type == "vue"){
-        require_once$_SERVER["DOCUMENT_ROOT"]."../libs/modele/JouerUnMatch.php";
-        $title = "Consulter un joueur";
-        $page = $_SERVER["DOCUMENT_ROOT"]."../libs/vue/vuejoueur.php";
-        include_once $_SERVER["DOCUMENT_ROOT"]."../libs/components/page.php";
+    } else {
+        $joueur = (getJoueur($idJoueur));
+        if ($type === "modification") {
+            $title = "Modifier un joueur";
+            $page = $_SERVER["DOCUMENT_ROOT"] . "../libs/vue/modifierjoueur.php";
+            $joueur["dateNaissance"] = date("Y-m-d", strtotime($joueur["dateNaissance"]));
+            include_once $_SERVER["DOCUMENT_ROOT"] . "../libs/components/page.php";
+        } else if ($type == "vue"){
+            $css = ["voir.css"];
+            $stats['totalMatches'] = 5;
+            $stats['matchesWon']= 0;
+            $stats["winPercentage"] = 0;
+            $stats['avgNote'] = 0;
+            $matchs = getFDMPourJoueur($idJoueur);
+            require_once $_SERVER["DOCUMENT_ROOT"] . "../libs/modele/JouerUnMatch.php";
+            $title = "Consulter un joueur";
+            $page = $_SERVER["DOCUMENT_ROOT"] . "../libs/vue/vuejoueur.php";
+            include_once $_SERVER["DOCUMENT_ROOT"] . "../libs/components/page.php";
+        }
     }
 }

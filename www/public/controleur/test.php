@@ -2,10 +2,10 @@
 
 require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Joueur.php";
 
-use function Joueur\getData;
+use function Joueur\getJoueur;
 
 
-$joueur = (getData($_GET["idJoueur"]));
+$joueur = (getJoueur($_GET["idJoueur"]));
 
 //header("Content-Type: application/json");
 //echo json_encode($joueur);

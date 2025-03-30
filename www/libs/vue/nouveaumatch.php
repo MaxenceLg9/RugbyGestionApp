@@ -17,8 +17,8 @@ use function Enum\getLieux; ?>
                 <div class="form-row">
                     <label for="lieu">Lieu du match</label>
                     <select id="lieu" name="lieu" required>
-                        <?php foreach (getLieux() as $lieu) { ?>
-                            <option value="<?= $lieu ?>"><?= htmlspecialchars($lieu) ?></option>
+                        <?php foreach (getLieux() as $key=>$lieu) { ?>
+                            <option value="<?= $key ?>"><?= htmlspecialchars($lieu) ?></option>
                         <?php } ?>
                     </select>
                 </div>

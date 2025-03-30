@@ -16,8 +16,8 @@ require $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php" ?>
                 <div class="form-row">
                     <label for="lieu">Lieu du match</label>
                     <select id="lieu" name="lieu" required>
-                        <?php foreach (Enum\getLieux() as $lieuPossible) { ?>
-                            <option value="<?= $lieuPossible?>" <?= $lieu === $lieuPossible ? 'selected' : '' ?>>
+                        <?php foreach (Enum\getLieux() as $key=>$lieuPossible) { ?>
+                            <option value="<?= $key?>" <?= $lieu === $lieuPossible ? 'selected' : '' ?>>
                                 <?= htmlspecialchars($lieuPossible) ?>
                             </option>
                         <?php } ?>
