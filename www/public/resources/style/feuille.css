@@ -1,9 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
 .container {
     display: flex;
     align-items: center;
@@ -12,13 +6,28 @@ body {
     border: #0d1117 2px solid;
 }
 
+section {
+    border-radius: 10px;
+    background: #18181b;
+    padding: 0;
+}
+
+div.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    gap: 10px;
+    min-width: fit-content;
+    width: 100%;
+}
+
 .players-container {
     display: flex;
-    flex-wrap: wrap;
+    overflow-x: scroll;
+    width: 100%;
+    max-width: 1360px;
     gap: 15px;
-    width: 90%;
-    height: 850px;
-    overflow: auto;
 }
 
 .player-card {
@@ -98,22 +107,8 @@ body {
 }
 
 article {
-    background: #ffc0c0AA;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 5);
     flex-direction: column;
-    align-items: center;
-    padding: 1%;
-    width: 98%;
     gap: 10px;
-}
-
-form {
-    border-left: 2px solid black;
-    padding-bottom: 20px;
-    gap: 10px;
-    overflow-y: auto;
-    min-width: fit-content;
 }
 
 .form-notes {
@@ -136,12 +131,9 @@ aside{
     display: flex;
     /*background: rgba(255, 156, 156, 0.67);*/
     flex-direction: column;
-    height: 100%;
     gap: 15px;
-    align-self: flex-start;
-    max-height: 917px;
-    padding-left: 20px;
-    padding-top: 5px;
+    width: 1360px;
+    padding: 0 20px;
 }
 
 .disabled {

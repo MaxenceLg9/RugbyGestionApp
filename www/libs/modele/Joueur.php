@@ -23,4 +23,23 @@ namespace Joueur {
         ]);
         return json_decode($response->getBody(),true)["data"][0];
     }
+
+    function getJoueursOnMatch(string $idMatch){
+        $client = new Client([
+            'base_uri' => 'https://rugbygestionapi.alwaysdata.net/',
+            'timeout'  => 2.0,
+            'verify' => false
+        ]);
+
+        $response = $client->get('/joueurs',[
+            'query' => [
+                'idMatch' => $idMatch,
+            ],
+            'headers' => [
+                'Authorization' => $_COOKIE["token"] ?? "",
+                'Accept' => 'application/json',
+            ]
+        ]);
+        return json_decode($response->getBody(),true)["data"];
+    }
 }
