@@ -12,8 +12,8 @@ use function Enum\getLieux; ?>
             <h3>Entrez les informations du match à ajouter</h3>
             <table class="form-table">
                 <tr>
-                    <td><label for="datetime">Date du match</label></td>
-                    <td class="input"><input type="datetime-local" id="datetime" name="datetime" required></td>
+                    <td><label for="dateHeure">Date du match</label></td>
+                    <td class="input"><input type="datetime-local" id="dateHeure" name="dateHeure" required></td>
                 </tr>
                 <tr>
                     <td><label for="lieu">Lieu du match</label></td>
@@ -31,7 +31,8 @@ use function Enum\getLieux; ?>
                 </tr>
             </table>
             <input type="hidden" name="idMatch" value="<?= 0 ?>">
-            <button type="submit" class="add">Ajouter le match</button>
+            <button type="submit" class="add" onclick="gererMatch('POST')">Ajouter le match</button>
         </section>
     </article>
+    <script src="/resources/js/gerermatch.js"></script>
 </div>

@@ -11,8 +11,8 @@ require $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php" ?>
             <h3>Match du <?= $match["dateHeure"] ?> contre <?= $match["adversaire"] ?>, Lieu : <?= $match["lieu"] ?></h3>
             <table class="form-table">
                 <tr>
-                    <td><label for="datetime">Date du match</label></td>
-                    <td class="input"><input type="datetime-local" id="datetime" name="datetime" required value="<?= $match["dateHeure"] ?>"></td>
+                    <td><label for="dateHeure">Date du match</label></td>
+                    <td class="input"><input type="datetime-local" id="dateHeure" name="dateHeure" required value="<?= $match["dateHeure"] ?>"></td>
                 </tr>
                 <tr>
                     <td><label for="lieu">Lieu du match</label></td>
@@ -31,8 +31,9 @@ require $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php" ?>
                     <td class="input"><input type="text" id="adversaire" name="adversaire" placeholder="Nom de l'adversaire" required value="<?= $match["adversaire"] ?>"></td>
                 </tr>
             </table>
-            <input type="hidden" name="idMatch" value="<?= $match["idMatch"] ?>">
-            <button type="submit" class="add">Modifier le match</button>
+            <input type="hidden" name="idMatch" value="<?= $match["idMatch"]?>">
+            <button type="submit" class="add" onclick="gererMatch('PUT')">Modifier le match</button>
         </section>
     </article>
+    <script src="/resources/js/gerermatch.js"></script>
 </div>
