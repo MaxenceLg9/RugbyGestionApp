@@ -1,40 +1,38 @@
-const players = document.querySelectorAll('.player-card');
-const slots = document.querySelectorAll('.position-slot');
-const fieldNbJoueurs = document.getElementById('fieldNbJoueurs');
-const fieldNbPremieresLignes = document.getElementById('fieldNbPremieresLignes');
-
-const inputNbJoueurs = document.getElementById('inputNbJoueurs');
-const inputNbPremieresLignes = document.getElementById('inputNbPremieresLignes');
-const buttonValider = document.getElementById('buttonValider');
-
-const joueurs = document.getElementById('players');
+const playersCards = $('div.player-card');
+const slotsFDM = $('.position-slot');
+const fieldNbJoueurs = $('#fieldNbJoueurs');
+const fieldNbPremieresLignes = $('#fieldNbPremieresLignes');
+const buttonValider = $('#buttonValider');
+const divJoueursDisponibles = $('div#players');
 
 let draggedPlayer = null;
 
 updateUI();
 
 // Add dragover and drop event listeners to the "joueurs" container
-joueurs.addEventListener('dragover', (e) => e.preventDefault());
+divJoueursDisponibles.on('dragover', (e) => e.preventDefault());
 
-joueurs.addEventListener('drop', (e) => {
+divJoueursDisponibles.on('drop', (e) => {
     e.preventDefault();
-    joueurs.appendChild(draggedPlayer); // Return player to the "joueurs" container
+    divJoueursDisponibles.append(draggedPlayer); // Return player to the "joueurs" container
 });
 
 // Add drag-and-drop behavior to each slot
-slots.forEach(slot => {
+slotsFDM.each(function() {
     // Allow drop on the slot
-    slot.addEventListener('dragover', (e) => e.preventDefault());
+    $(this).on('dragover', function(e) {
+        e.preventDefault();
+    });
 
-    slot.addEventListener('drop', function (e) {
+    $(this).on('drop', function (e) {
         e.preventDefault();
 
         if (draggedPlayer) {
-            const playerId = draggedPlayer.querySelector('input[name="idJoueur"]').value;
-            const playerPremiereLigne = draggedPlayer.querySelector('input[name="premiereLigne"]').value === '1';
+            const playerId = $(draggedPlayer).find('input[name="idJoueur"]').val();
+            const playerPremiereLigne = $(draggedPlayer).find('input[name="premiereLigne"]').val() === '1';
 
             // Find the hidden input for this slot and set its value
-            const hiddenInput = slot.nextElementSibling;
+            const hiddenInput = $(this).next('input[type="hidden"]');
             if (hiddenInput && hiddenInput.type === 'hidden') {
                 hiddenInput.value = playerId;
 
@@ -44,10 +42,10 @@ slots.forEach(slot => {
                 } else {
                     // Slot was occupied; handle swapping logic
                     const existingPlayer = this.firstElementChild;
-                    const existingPremiereLigne = existingPlayer.querySelector('input[name="premiereLigne"]').value === '1';
+                    const existingPremiereLigne = $(existingPlayer).find('input[name="premiereLigne"]').val() === '1';
 
                     // Return the existing player to "joueurs"
-                    joueurs.appendChild(existingPlayer);
+                    divJoueursDisponibles.append(existingPlayer);
 
                     // Adjust counts based on swapping
                     if (playerPremiereLigne && !existingPremiereLigne) {
@@ -58,7 +56,8 @@ slots.forEach(slot => {
                 }
 
                 // Add the dragged player to the slot
-                this.appendChild(draggedPlayer);
+                console.log("Appending draggedPlayer to the slot")
+                $(this).append(draggedPlayer);
 
                 // Update displayed counts
                 updateUI();
@@ -66,23 +65,23 @@ slots.forEach(slot => {
         }
     });
 
-    slot.addEventListener('dragleave', (e) => {
+    $(this).on('dragleave', (e) => {
         console.log('draggedPlayer:', draggedPlayer);
-        console.log('slot.firstChild:', slot.firstChild);
-        console.log(slot.firstChild === draggedPlayer);
-        if (draggedPlayer && slot.firstChild === draggedPlayer) {
+        console.log('slot.firstChild:', $(this).firstChild);
+        console.log("FirstChild == dragged" + $(this).firstChild === draggedPlayer);
+        if (draggedPlayer && $(this).firstChild === draggedPlayer) {
             // Remove player from the slot
-            slot.removeChild(draggedPlayer);
+            $(this).remove(draggedPlayer);
 
             // Return player to "joueurs"
-            joueurs.appendChild(draggedPlayer);
-            const hiddenInput = slot.nextElementSibling;
+            divJoueursDisponibles.append(draggedPlayer);
+            const hiddenInput = $(this).nextElementSibling;
             if (hiddenInput && hiddenInput.type === 'hidden') {
                 hiddenInput.value = "";
                 console.log("hiddenInput.value", hiddenInput.value);
             }
             // Update counts
-            const playerPremiereLigne = draggedPlayer.querySelector('input[name="premiereLigne"]').value === '1';
+            const playerPremiereLigne = $(draggedPlayer).find('input[name="premiereLigne"]').val() === '1';
             updateCounts(playerPremiereLigne, -1);
             // Update displayed counts
             updateUI();
@@ -102,26 +101,26 @@ function updateCounts(isPremiereLigne, delta) {
 function updateUI() {
     fieldNbJoueurs.innerHTML = nbJoueurs.toString();
     fieldNbPremieresLignes.innerHTML = nbPremieresLignes.toString();
-    inputNbJoueurs.value = nbJoueurs;
-    inputNbPremieresLignes.value = nbPremieresLignes;
     buttonValider.disabled = nbJoueurs < 11 || nbPremieresLignes < 4;
     if(nbJoueurs < 11 || nbPremieresLignes < 4)
-        buttonValider.classList.add('disabled');
+        buttonValider.addClass('disabled');
     else
-        buttonValider.classList.remove('disabled');
+        buttonValider.removeClass('disabled');
 }
 console.log("Players to load");
-players.forEach(player => {
-    player.addEventListener('dragstart', (e) => {
-        draggedPlayer = player;
-        setTimeout(() => player.classList.add('dragging'), 0)
+playersCards.each(function() {
+    // Allow drop on the slot
+    $(this).on('dragstart', (e) => {
+        draggedPlayer = $(this);
+        setTimeout(() => $(this).addClass('dragging'), 0)
     });
 
     if(archiveMatch === 0)
-        player.setAttribute('draggable', 'true');
+        $(this).attr('draggable', 'true');
 
-    player.addEventListener('dragend', (e) => {
+
+    $(this).on('dragend', (e) => {
         draggedPlayer = null;
-        player.classList.remove('dragging');
+        $(this).removeClass('dragging');
     });
 });
