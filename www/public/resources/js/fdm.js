@@ -33,8 +33,8 @@ slotsFDM.each(function() {
 
             // Find the hidden input for this slot and set its value
             const hiddenInput = $(this).next('input[type="hidden"]');
-            if (hiddenInput && hiddenInput.type === 'hidden') {
-                hiddenInput.value = playerId;
+            if (hiddenInput.length > 0 && hiddenInput[0].type === 'hidden') {
+                hiddenInput.val(playerId);
 
                 if (this.children.length === 0) {
                     // Slot was empty; update counts
@@ -56,7 +56,7 @@ slotsFDM.each(function() {
                 }
 
                 // Add the dragged player to the slot
-                console.log("Appending draggedPlayer to the slot")
+                console.log("Appending draggedPlayer to the slot");
                 $(this).append(draggedPlayer);
 
                 // Update displayed counts
