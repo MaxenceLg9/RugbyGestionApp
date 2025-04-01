@@ -1,5 +1,3 @@
-<?php include_once "../components/nav.php" ?>
-
 <div class="main div-column">
     <header class="header-section">
         <h1>Noter les joueurs</h1>
@@ -10,41 +8,26 @@
         if (empty($joueurs)) {
             echo "<p class=\"color-red\">Aucun joueur n'est disponible pour ce match.</p>";
         } else { ?>
-            <form method="post" action="gererfdm.php">
                 <div class="form-notes">
-                    <?php foreach ($joueurs as $fdm) {
-                        $joueur = $fdm->getJoueur();
-                        ?>
-                        <section class="section-card">
+                    <?php foreach ($joueurs as $key=>$joueur) { ?>
+                        <section class="section-card" data-id="<?= htmlspecialchars($key)?>">
                             <div class="card-info">
                                 <div class="head">
-                                    <img src="<?= $joueur->getUrl() ?: '../resources/img/data/default.png' ?>" alt="Photo de <?= htmlspecialchars($joueur->getPrenom() . ' saisirnotes.php' . $joueur->getNom()) ?>" class="profile-picture">
-                                    <h2><?= htmlspecialchars($joueur->getPrenom() . ' saisirnotes.php' . $joueur->getNom()) ?></h2>
-                                    <p><strong>Position: </strong><?= htmlspecialchars($fdm->getNumero()) ?></p>
+                                    <img src="<?= $joueur["url"] ?>" alt="Photo de <?= htmlspecialchars($joueur["prenom"] . ' ' . $joueur["nom"]) ?>" class="profile-picture">
+                                    <h2><?= htmlspecialchars($joueur["prenom"] . ' ' . $joueur["nom"]) ?></h2>
+                                    <p><strong>Position: </strong><?= htmlspecialchars($key) ?></p>
                                 </div>
                             </div>
-
                             <!-- Use unique names for inputs -->
-                            <?php
-                            $key = htmlspecialchars(openssl_encrypt($joueur->getIdJoueur(), 'aes-256-cbc', $csrf_token, 0, $iv));
-                            $match = htmlspecialchars($fdm->getIdMatch());
-                            $numero = htmlspecialchars(openssl_encrypt($fdm->getNumero(),'aes-256-cbc', $csrf_token, 0, $iv));
-                            ?>
-                            <input type="hidden" name="notes[<?= $key ?>][idMatch]" value="<?= $match ?>">
-                            <input type="hidden" name="notes[<?= $key ?>][idJoueur]" value="<?= $numero ?>">
                             <div class="row">
                                 <label for="note-<?= $key ?>">Note :</label>
-                                <input type="number" id="note-<?= $key ?>" name="notes[<?= $key ?>][note]" min="0" max="20" step="0.25" value="<?= $fdm->getNote() == -1 ? 0 : $fdm->getNote()?>" required>
+                                <input type="number" id="note-<?= $key ?>" name="notes" min="0" max="20" step="0.25" value="<?= $joueur["note"] == -1 ? 0 : $joueur["note"]?>" required>
                             </div>
                         </section>
                     <?php } ?>
                 </div>
-                <input type="hidden" name="type" value="notes">
-                <input type="hidden" name="fdm" value="2">
-                <input type="hidden" name="idMatch" value="<?= htmlspecialchars($idMatch) ?>">
-                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(hash_hmac("sha256", $idMatch . $csrf_token . "notes", $csrf_token)) ?>">
+                <input type="hidden" name="idMatch" value="<?= htmlspecialchars($_GET["idMatch"]) ?>">
                 <button type="submit" class="button save-note">Enregistrer les notes</button>
-            </form>
         <?php } ?>
     </article>
 </div>
