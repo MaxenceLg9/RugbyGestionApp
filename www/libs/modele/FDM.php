@@ -25,4 +25,24 @@ namespace FDM {
         $feuilles = json_decode($response->getBody(),true)["data"];
         return empty($feuilles) ? [] :$feuilles["matchs"];
     }
+
+    function getFDMsPourMatch(string $idMatch) : array {
+        $client = new Client([
+            'base_uri' => 'https://rugbygestionapi.alwaysdata.net/',
+            'timeout'  => 2.0,
+            'verify' => false
+        ]);
+
+        $response = $client->get('/fdm',[
+            'query' => [
+                'idMatch' => $idMatch,
+            ],
+            'headers' => [
+                'Authorization' => $_COOKIE["token"] ?? "",
+                'Accept' => 'application/json',
+            ]
+        ]);
+        $feuilles = json_decode($response->getBody(),true)["data"];
+        return empty($feuilles) ? [] :$feuilles["matchs"][$idMatch];
+    }
 }
