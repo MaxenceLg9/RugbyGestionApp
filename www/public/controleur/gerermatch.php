@@ -35,7 +35,6 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
             $page = $_SERVER["DOCUMENT_ROOT"] . "../libs/vue/modifiermatch.php";
             include_once $_SERVER["DOCUMENT_ROOT"] . "../libs/components/page.php";
         } elseif ($type == "vue") {
-
             $css = ["feuille.css"];
             $title = "Consulter un match";
             $page = $_SERVER["DOCUMENT_ROOT"] . "../libs/vue/vuematch.php";

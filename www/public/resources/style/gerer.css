@@ -21,6 +21,10 @@ img.profile-picture {
     height: 200px;
 }
 
+div.main{
+    justify-content: center;
+}
+
 section {
     gap: 20px;
     border-radius: 10px;

@@ -71,7 +71,7 @@ require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php";
                 <?php if($match["archive"]){ ?>
                     <p>Le match est archivé, vous ne pouvez plus le modifier</p>
                     <p>Résultat : <?=$match["resultat"]?></p>
-                    <a class="button saisie" href="/gererfdm.php?type=notes&idMatch=<?=$match["idMatch"]?>">
+                    <a class="button saisie" href="/saisirnotes?idMatch=<?=$match["idMatch"]?>">
                         <p>Saisir les notes</p>
                     </a>
                 <?php } else { ?>
