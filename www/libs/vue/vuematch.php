@@ -25,7 +25,7 @@ require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php";
                                 <div class="<?=$class?>" data-id="1">
                                     <img src="<?=$joueur["url"]?>" alt="Profile picture of <?=$joueur["nom"] . " " . $joueur["prenom"]?>" width="40" height="40">
                                     <p><?=$joueur["nom"] . " " . $joueur["prenom"]?></p>
-                                    <input type="hidden" name="idJoueur" value="'<?=$joueur["idJoueur"]?>">
+                                    <input type="hidden" name="idJoueur" value="<?=$joueur["idJoueur"]?>">
                                     <input type="hidden" name="premiereLigne" value="<?=$joueur["estPremiereLigne"]?>">
                                 </div>
                             <?php }
@@ -54,9 +54,9 @@ require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php";
                                     $class = $class . " premiere-ligne";
                                 }?>
                                 <div class="<?=$class?>" data-id="1">
-                                    <img src="<?=$joueur["url"]?>'" alt="Profile picture of <?=$joueur["nom"] . " " . $joueur["prenom"]?>" width="40" height="40">
+                                    <img src="<?=$joueur["url"]?>" alt="Profile picture of <?=$joueur["nom"] . " " . $joueur["prenom"]?>" width="40" height="40">
                                     <p><?=$joueur["nom"] . " " . $joueur["prenom"]?></p>
-                                    <!--<input type="hidden" name="idJoueur" value="'.htmlspecialchars(openssl_encrypt($joueur["idJoueur"],'aes-256-cbc',$_SESSION['csrf_token'],0,$iv)).'">-->
+                                    <input type="hidden" name="idJoueur" value="<?=$joueur["idJoueur"]?>">
                                     <input type="hidden" name="premiereLigne" value="<?=$joueur["estPremiereLigne"]?>">
                                 </div>
                                 <?php
@@ -64,7 +64,7 @@ require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php";
                             }
                             ?>
                         </div>
-                        <input type="hidden" name="<?=$key?>" value="<?= $key?>" >
+                        <input type="hidden" name="<?=$key?>" value="<?=$key?>" >
                     <?php } ?>
                 </div>
 
@@ -94,8 +94,8 @@ require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php";
                     <?php } else { ?>
                         <input type="hidden" name="idMatch" value="<?=$match["idMatch"]?>">
                         <input type="hidden" name="fdm" value="1">
-                        <input type="submit" name="submit" class="button saisie" value="ajouter">
-                        <input type="submit" name="submit" class="button modify" value="valider" id="buttonValider">
+                        <button type="submit" name="submit" class="button saisie" value="ajouter" id="buttonAjouter">Saisir la feuille</button>
+                        <button type="submit" name="submit" class="button modify" value="valider" id="buttonValider">Valider la feuille</button>
                         <?php
                     }
                 }

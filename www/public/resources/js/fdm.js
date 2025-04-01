@@ -2,10 +2,58 @@ const playersCards = $('div.player-card');
 const slotsFDM = $('.position-slot');
 const fieldNbJoueurs = $('#fieldNbJoueurs');
 const fieldNbPremieresLignes = $('#fieldNbPremieresLignes');
-const buttonValider = $('#buttonValider');
+const buttonValider = $('button#buttonValider');
+const buttonAjouter = $('button#buttonAjouter');
 const divJoueursDisponibles = $('div#players');
 
 let draggedPlayer = null;
+
+
+// Helper function to update UI counts
+function updateUI() {
+    fieldNbJoueurs.innerHTML = nbJoueurs.toString();
+    fieldNbPremieresLignes.innerHTML = nbPremieresLignes.toString();
+    buttonValider.disabled = nbJoueurs < 11 || nbPremieresLignes < 4;
+    if(nbJoueurs < 11 || nbPremieresLignes < 4)
+        buttonValider.addClass('disabled');
+    else
+        buttonValider.removeClass('disabled');
+}
+
+async function remplirFDM(){
+    const feuilles = {};
+    slotsFDM.each(function() {
+        const idJoueur = $(this).find('input[name="idJoueur"]').val();
+        if (idJoueur) {
+            console.log(idJoueur);
+            console.log($(this).data("position"));
+            feuilles[$(this).data("position")] = idJoueur;
+        }
+    });
+    const data = {}
+    data["feuilles"] = feuilles;
+    data["idMatch"] = parseInt($('input[name="idMatch"]').val());
+    console.log("data", data);
+    try{
+        const response = await $.ajax("https://rugbygestionapi.alwaysdata.net/fdm", {
+            method: "POST",
+            contentType: "application/json", // Important for sending JSON
+            data: JSON.stringify(data),
+            headers:{"Authorization": Cookies.get("token")}
+        })
+        console.log(response.response)
+        alert(response.response)
+    }catch(xhr){
+        console.error(xhr.responseText);
+        try {
+            const json = JSON.parse(xhr.responseText);
+            alert(json.response);
+        } catch (e) {
+            console.error("Could not parse response as JSON:", xhr.responseText);
+            alert("An error occurred, but the response is not valid JSON.");
+        }
+    }
+}
 
 updateUI();
 
@@ -96,17 +144,6 @@ function updateCounts(isPremiereLigne, delta) {
         nbPremieresLignes += delta;
     }
 }
-
-// Helper function to update UI counts
-function updateUI() {
-    fieldNbJoueurs.innerHTML = nbJoueurs.toString();
-    fieldNbPremieresLignes.innerHTML = nbPremieresLignes.toString();
-    buttonValider.disabled = nbJoueurs < 11 || nbPremieresLignes < 4;
-    if(nbJoueurs < 11 || nbPremieresLignes < 4)
-        buttonValider.addClass('disabled');
-    else
-        buttonValider.removeClass('disabled');
-}
 console.log("Players to load");
 playersCards.each(function() {
     // Allow drop on the slot
@@ -124,3 +161,9 @@ playersCards.each(function() {
         $(this).removeClass('dragging');
     });
 });
+
+buttonAjouter.on("click", async function(e){
+    e.preventDefault();
+    await remplirFDM();
+    console.log("Sending FDM request")
+})
