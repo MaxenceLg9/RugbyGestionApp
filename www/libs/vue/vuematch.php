@@ -103,8 +103,8 @@ require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php";
     </article>
 </div>
 <script>
-    let nbJoueurs = <?php echo $nbJoueurs ?>;
-    let nbPremieresLignes = <?php echo $nbPremieresLignes ?>;
-    let archiveMatch = <?php echo $match["archive"] || $match["valider"] ? 1 : 0?>;
+    let nbJoueurs = <?=$nbJoueurs ?>;
+    let nbPremieresLignes = <?= $nbPremieresLignes ?>;
+    let archiveMatch = <?= $match["archive"] || $match["valider"] ? 1 : 0?>;
 </script>
 <script src="/resources/js/fdm.js"></script>

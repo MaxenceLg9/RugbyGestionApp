@@ -111,15 +111,6 @@ article {
     gap: 10px;
 }
 
-.form-notes {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    width: 100%;
-    justify-content: center;
-    flex-direction: row;
-}
-
 .section-card {
     width: 300px;
     height: 300px;
