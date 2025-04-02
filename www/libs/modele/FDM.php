@@ -43,6 +43,6 @@ namespace FDM {
             ]
         ]);
         $feuilles = json_decode($response->getBody(),true)["data"];
-        return empty($feuilles) ? [] :$feuilles["matchs"][$idMatch];
+        return empty($feuilles["matchs"]) ? array("feuilles" => []) :$feuilles["matchs"][$idMatch];
     }
 }

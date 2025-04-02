@@ -39,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             $stats["winPercentage"] = 0;
             $stats['avgNote'] = 0;
             $matchs = getFDMPourJoueur($idJoueur);
-            require_once $_SERVER["DOCUMENT_ROOT"] . "../libs/modele/JouerUnMatch.php";
             $title = "Consulter un joueur";
             $page = $_SERVER["DOCUMENT_ROOT"] . "../libs/vue/vuejoueur.php";
             include_once $_SERVER["DOCUMENT_ROOT"] . "../libs/components/page.php";

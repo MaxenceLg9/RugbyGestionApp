@@ -104,7 +104,7 @@
                         <td><?= htmlspecialchars($fdm["lieu"]) ?></td>
                         <td><?= htmlspecialchars($fdm["resultat"]) ?></td>
                         <td><?= htmlspecialchars($numero) ?></td>
-                        <td><?= $fdm["estTitulaire"] ? 'Oui' : 'Non' ?></td>
+                        <td><?= $numero < 16 ? 'Oui' : 'Non' ?></td>
                         <?php if($fdm["note"] == -1){ ?>
                             <td>Non noté</td>
                         <?php }else{ ?>
