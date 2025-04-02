@@ -2,7 +2,7 @@
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "../libs/modele/FDM.php";
 
-$css = ["feuille.css"];
+$css = ["notes.css"];
 $joueurs = FDM\getFDMsPourMatch($_GET["idMatch"])["feuilles"];
 $title = "Ajouter des notes";
 $page = $_SERVER["DOCUMENT_ROOT"].'../libs/vue/saisirnotes.php';
