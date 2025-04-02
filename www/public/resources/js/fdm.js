@@ -12,8 +12,8 @@ let draggedPlayer = null;
 
 // Helper function to update UI counts
 function updateUI() {
-    fieldNbJoueurs.innerHTML = nbJoueurs.toString();
-    fieldNbPremieresLignes.innerHTML = nbPremieresLignes.toString();
+    fieldNbJoueurs.text(nbJoueurs.toString());
+    fieldNbPremieresLignes.text(nbPremieresLignes.toString());
     buttonValider.disabled = nbJoueurs < 11 || nbPremieresLignes < 4;
     if(nbJoueurs < 11 || nbPremieresLignes < 4)
         buttonValider.addClass('disabled');
@@ -135,20 +135,20 @@ if(archiveMatch === 0) {
 
             if (draggedPlayer) {
                 const playerId = $(draggedPlayer).find('input[name="idJoueur"]').val();
-                const playerPremiereLigne = $(draggedPlayer).find('input[name="premiereLigne"]').val() === '1';
+                const playerPremiereLigne = $(draggedPlayer).find('input[name="premiereLigne"]').val() === 'Oui';
 
                 // Find the hidden input for this slot and set its value
                 const hiddenInput = $(this).next('input[type="hidden"]');
                 if (hiddenInput.length > 0 && hiddenInput[0].type === 'hidden') {
                     hiddenInput.val(playerId);
 
-                    if (this.children.length === 0) {
+                    if ($(this).children().length === 0) {
                         // Slot was empty; update counts
                         updateCounts(playerPremiereLigne, 1);
                     } else {
                         // Slot was occupied; handle swapping logic
-                        const existingPlayer = this.firstElementChild;
-                        const existingPremiereLigne = $(existingPlayer).find('input[name="premiereLigne"]').val() === '1';
+                        const existingPlayer = $(this).children().first();
+                        const existingPremiereLigne = $(existingPlayer).find('input[name="premiereLigne"]').val() === 'Oui';
 
                         // Return the existing player to "joueurs"
                         divJoueursDisponibles.append(existingPlayer);
@@ -173,21 +173,21 @@ if(archiveMatch === 0) {
 
         $(this).on('dragleave', (e) => {
             console.log('draggedPlayer:', draggedPlayer);
-            console.log('slot.firstChild:', $(this).firstChild);
+            console.log('slot.firstChild:', $(this).children().first());
             console.log("FirstChild == dragged" + $(this).firstChild === draggedPlayer);
-            if (draggedPlayer && $(this).firstChild === draggedPlayer) {
+            if (draggedPlayer && $(this).children().first().is(draggedPlayer)) {
                 // Remove player from the slot
                 $(this).remove(draggedPlayer);
 
                 // Return player to "joueurs"
                 divJoueursDisponibles.append(draggedPlayer);
-                const hiddenInput = $(this).nextElementSibling;
-                if (hiddenInput && hiddenInput.type === 'hidden') {
-                    hiddenInput.value = "";
-                    console.log("hiddenInput.value", hiddenInput.value);
+                const hiddenInput = $(this).next('input[type="hidden"]');
+                if (hiddenInput.length > 0) {
+                    hiddenInput.val("");
+                    console.log("hiddenInput.value", hiddenInput.val());
                 }
                 // Update counts
-                const playerPremiereLigne = $(draggedPlayer).find('input[name="premiereLigne"]').val() === '1';
+                const playerPremiereLigne = $(draggedPlayer).find('input[name="premiereLigne"]').val() === 'Oui';
                 updateCounts(playerPremiereLigne, -1);
                 // Update displayed counts
                 updateUI();
@@ -199,8 +199,8 @@ if(archiveMatch === 0) {
     playersCards.each(function () {
         // Allow drop on the slot
         $(this).on('dragstart', (e) => {
-            draggedPlayer = $(this);
             setTimeout(() => $(this).addClass('dragging'), 0)
+            draggedPlayer = $(this);
         });
 
         if (archiveMatch === 0)
