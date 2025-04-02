@@ -4,6 +4,7 @@ const fieldNbJoueurs = $('#fieldNbJoueurs');
 const fieldNbPremieresLignes = $('#fieldNbPremieresLignes');
 const buttonValider = $('button#buttonValider');
 const buttonAjouter = $('button#buttonAjouter');
+const buttonSaisirScore = $('button#buttonScore');
 const divJoueursDisponibles = $('div#players');
 
 let draggedPlayer = null;
@@ -62,6 +63,31 @@ async function validerFDM(){
             contentType: "application/json", // Important for sending JSON
             data: JSON.stringify({
                 "idMatch" : parseInt($('input[name="idMatch"]').val())
+            }),
+            headers:{"Authorization": Cookies.get("token")}
+        })
+        console.log(response.response)
+        alert(response.response)
+    }catch(xhr){
+        console.error(xhr.responseText);
+        try {
+            const json = JSON.parse(xhr.responseText);
+            alert(json.response);
+        } catch (e) {
+            console.error("Could not parse response as JSON:", xhr.responseText);
+            alert("An error occurred, but the response is not valid JSON.");
+        }
+    }
+}
+
+async function saisirScore(){
+    try{
+        const response = await $.ajax("https://rugbygestionapi.alwaysdata.net/matchs", {
+            method: "PATCH",
+            contentType: "application/json", // Important for sending JSON
+            data: JSON.stringify({
+                "idMatch" : parseInt($('input[name="idMatch"]').val()),
+                "resultat" : $('select[name="resultat"]').val()
             }),
             headers:{"Authorization": Cookies.get("token")}
         })
@@ -198,4 +224,10 @@ buttonValider.on("click",async function(e){
     e.preventDefault()
     await validerFDM();
     console.log("Validation de la fdm")
+})
+
+buttonSaisirScore.on("click",async function(e){
+    e.preventDefault()
+    await saisirScore()
+    console.log("Saisie du score")
 })

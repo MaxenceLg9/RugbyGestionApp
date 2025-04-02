@@ -3,7 +3,7 @@
 require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php";
 
 ?>
-<div class="main">
+<div class="main" xmlns="http://www.w3.org/1999/html">
     <h1>Saisir votre feuille de match</h1>
     <article>
         <h3>Entrez les informations du match à modifier</h3>
@@ -68,7 +68,7 @@ require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php";
                     <?php } ?>
                 </div>
 
-                <?php if($match["archive"]){ ?>
+                <?php if($match["valider"]){ ?>
                     <p>Le match est archivé, vous ne pouvez plus le modifier</p>
                     <p>Résultat : <?=$match["resultat"]?></p>
                     <a class="button saisie" href="/saisirnotes?idMatch=<?=$match["idMatch"]?>">
@@ -77,7 +77,7 @@ require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php";
                 <?php } else { ?>
                     <input type="hidden" name="type" value="ajout">
                     <input type="hidden" name="idMatch" value="<?=$match["idMatch"]?>">
-                    <?php if($match["valider"]){ ?>
+                    <?php if($match["archive"]){ ?>
                         <div class="row">
                             <p>Feuille de match validée, vous pouvez dès à présent finaliser le match en saisissant le score</p>
                             <label for="resultat">Score</label>
@@ -89,11 +89,9 @@ require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Enum.php";
                                 <?php } ?>
                             </select>
                         </div>
-                        <input type="hidden" name="fdm" value="0">
-                        <input type="submit" name="submit" class="button saisie" value="Saisir le score" id="btnScore">
+                        <button type="submit" name="submit" class="button saisie" id="buttonScore">Saisir le score</button>
                     <?php } else { ?>
                         <input type="hidden" name="idMatch" value="<?=$match["idMatch"]?>">
-                        <input type="hidden" name="fdm" value="1">
                         <button type="submit" name="submit" class="button saisie" value="ajouter" id="buttonAjouter">Saisir la feuille</button>
                         <button type="submit" name="submit" class="button modify" value="valider" id="buttonValider">Valider la feuille</button>
                         <?php
