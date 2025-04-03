@@ -10,7 +10,7 @@
         } else { ?>
             <div class="form-notes">
                 <?php foreach ($joueurs as $key=> $joueur) { ?>
-                    <section class="section-card" data-id="<?= htmlspecialchars($key)?>">
+                    <section class="section-card" data-numero="<?= htmlspecialchars($key)?>">
                         <div class="card-info">
                             <img src="<?= $joueur["url"] ?>" alt="Photo de <?= htmlspecialchars($joueur["prenom"] . ' ' . $joueur["nom"]) ?>" class="profile-picture">
                             <h2><?= htmlspecialchars($joueur["prenom"] . ' ' . $joueur["nom"]) ?></h2>
@@ -28,4 +28,5 @@
             <button type="submit" class="button save-note">Enregistrer les notes</button>
         <?php } ?>
     </article>
+    <script src="/resources/js/notes.js"></script>
 </div>
