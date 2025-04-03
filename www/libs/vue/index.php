@@ -2,7 +2,7 @@
     <h1>RugbyGestionPlus</h1>
     <article>
         <!-- Welcome Section -->
-        <section class="header-section section-index">
+        <section class="section-index">
             <h2>Bienvenue <strong class="strong-bienvenue"> <!-- PHP Code for Dynamic Name --> </strong> !</h2>
             <p>
                 RugbyGestionPlus vous permet de gérer efficacement votre équipe de rugby et d’améliorer vos performances.
