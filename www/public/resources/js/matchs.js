@@ -25,6 +25,14 @@ async function supprimer(idMatch){
     if(!confirm("Voulez-vous vraiment supprimer ce match ?"))
         return;
     try {
+        await $.ajax('https://rugbygestionapi.alwaysdata.net/fdm', {
+            method: "DELETE",
+            contentType: "application/json", // Important for sending JSON
+            data: JSON.stringify({
+                "idMatch": idMatch
+            }),
+            headers:{"Authorization": Cookies.get("token")}
+        })
         const response = await $.ajax('https://rugbygestionapi.alwaysdata.net/matchs',{
             method: "DELETE",
             contentType: "application/json", // Important for sending JSON
@@ -33,6 +41,7 @@ async function supprimer(idMatch){
             }),
             headers:{"Authorization": Cookies.get("token")}
         })
+        alert(response.data)
         $(`#section-card-${idMatch}`).remove();
     } catch (xhr) {
         console.error(xhr.responseText);
