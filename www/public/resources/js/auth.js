@@ -9,29 +9,18 @@ formRegister.toggle()
 
 async function login(){
     try {
-        const response = await $.ajax("https://rugbygestionauth.alwaysdata.net/api/auth/", {
+        const response = await $.ajax("https://rugbygestionauth.alwaysdata.net/", {
             method: "POST",
             contentType: "application/json", // Important for sending JSON
             data: JSON.stringify({
-                "username": formLogin.find("input#email").val(),
-                "password": formLogin.find("input#password").val()
-                // "username" : "aaa",
-                // "password": "bbb"
+                "email": formLogin.find('input[name="email"]').val(),
+                "password": formLogin.find('input[name="password"]').val()
             })
         })
         console.log(response);
         Cookies.set("token", response.token);
-        try{
-            const page = await $.ajax("/",{
-                method: 'GET',
-                headers:{"Authorization": response.token}
-            })
-            console.log(page)
-            window.location = "/"
-        }catch (xhr){
-            console.log("Erreur lors de la recupération de la page")
-            alert("La page n'a pas pu être récupérée")
-        }
+        alert("Connexion réussie ! Vous allez être redirigé")
+        window.location = "/"
     } catch (xhr) {
         console.error(xhr.responseText);
         try {
@@ -46,16 +35,16 @@ async function login(){
 
 async function register(){
     try {
-        const response = await $.ajax("https://rugbygestionauth.alwaysdata.net/api/auth/", {
+        const response = await $.ajax("https://rugbygestionauth.alwaysdata.net/", {
             method: "POST",
             contentType: "application/json", // Important for sending JSON
             data: JSON.stringify({
-                "firstname": formRegister.find("input#firstname").val(),
-                "name": formRegister.find("input#name").val(),
-                "equipe": formRegister.find("input#equipe").val(),
-                "email": formRegister.find("input#email").val(),
-                "password": formRegister.find("input#password").val(),
-                "confirmpassword": formRegister.find("input#confirmpassword").val()
+                "firstname": formRegister.find("input[name='firstname']").val(),
+                "name": formRegister.find("input[name='name']").val(),
+                "equipe": formRegister.find("input[name='equipe']").val(),
+                "email": formRegister.find("input[name='email']").val(),
+                "password": formRegister.find("input[name='password']").val(),
+                "confirmpassword": formRegister.find("input[name='confirmpassword']").val()
             })
         })
         console.log(response);

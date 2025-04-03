@@ -117,8 +117,7 @@ function createMatchCard(match) {
     divMatchs.append(section);  // Assuming there's a container with id "matchContainer"
 }
 
-getMatchs()
 // Usage Example
-$(document).ready(function () {
-    getMatchs();
+$(document).ready(async function () {
+    await getMatchs();
 });
