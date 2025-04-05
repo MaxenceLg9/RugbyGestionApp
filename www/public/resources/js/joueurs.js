@@ -5,14 +5,15 @@ async function getJoueurs() {
         const response = await $.ajax('https://rugbygestionapi.alwaysdata.net/joueurs',{
             method: "GET",
             contentType: "application/json", // Important for sending JSON
-            dataType: "json",
+            headers:{"Authorization": Cookies.get("token")}
         })
         console.log(response)
         response.data.forEach(createPlayerCard);
     } catch (xhr) {
-        console.error(xhr.responseText);
+        console.error("XHR Error:", xhr);
         try {
             const json = JSON.parse(xhr.responseText);
+            console.log(json);
             alert(json.response);
         } catch (e) {
             console.error("Could not parse response as JSON:", xhr.responseText);
@@ -38,6 +39,7 @@ async function supprimer(idJoueur){
         console.error(xhr.responseText);
         try {
             const json = JSON.parse(xhr.responseText);
+            console.log(json);
             alert(json.response);
         } catch (e) {
             console.error("Could not parse response as JSON:", xhr.responseText);

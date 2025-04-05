@@ -5,6 +5,9 @@ async function getMatchs() {
         const response = await $.ajax('https://rugbygestionapi.alwaysdata.net/matchs',{
             method: "GET",
             contentType: "application/json", // Important for sending JSON
+            headers:{
+                "Authorization": Cookies.get("token"),
+            }
         })
         console.log(response)
         response.data.forEach(createMatchCard);
