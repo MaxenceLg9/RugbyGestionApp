@@ -1,6 +1,11 @@
 <?php
 
-/*apiVerifyToken()*/
+require $_SERVER["DOCUMENT_ROOT"]."/../libs/modele/Token.php";
+use function Token\apiVerifyToken;
+if(apiVerifyToken()){
+    header("Location: /index.php");
+    die();
+}
 
 $title = "Login";
 $css = ["auth.css"];

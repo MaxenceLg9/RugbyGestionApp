@@ -1,5 +1,12 @@
 <?php
 
+require $_SERVER["DOCUMENT_ROOT"]."/../libs/modele/Token.php";
+use function Token\apiVerifyToken;
+if(!apiVerifyToken()){
+    header("Location: /auth.php");
+    die();
+}
+
 require_once $_SERVER["DOCUMENT_ROOT"] . "../libs/modele/FDM.php";
 
 $css = ["notes.css"];

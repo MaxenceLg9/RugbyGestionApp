@@ -1,10 +1,19 @@
 <?php
 
+require $_SERVER["DOCUMENT_ROOT"]."/../libs/modele/Token.php";
+use function Token\apiVerifyToken;
+if(!apiVerifyToken()){
+    header("Location: /auth.php");
+    die();
+}
+
 require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/MatchDeRugby.php";
 require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/FDM.php";
 require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Joueur.php";
 
 use function MatchDeRugby\getMatch,Joueur\getJoueursOnMatch;
+
+
 
 $type = $_POST["type"] ?? $_GET["type"] ?? null;
 

@@ -1,9 +1,18 @@
 <?php
 
+require $_SERVER["DOCUMENT_ROOT"]."/../libs/modele/Token.php";
+use function Token\apiVerifyToken;
+if(!apiVerifyToken()){
+    header("Location: /auth.php");
+    die();
+}
+
 require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Joueur.php";
 require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/FDM.php";
+require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Stats.php";
 
 use function Joueur\getJoueur, FDM\getFDMPourJoueur;
+use function Stats\getStatsJoueurs;
 
 $type = $_POST["type"] ?? $_GET["type"] ?? null;
 
@@ -26,18 +35,15 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         $page = $_SERVER["DOCUMENT_ROOT"]."../libs/vue/nouveaujoueur.php";
         include_once $_SERVER["DOCUMENT_ROOT"]."../libs/components/page.php";
     } else {
-        $joueur = (getJoueur($idJoueur));
         if ($type === "modification") {
+            $joueur = (getJoueur($idJoueur));
             $title = "Modifier un joueur";
             $page = $_SERVER["DOCUMENT_ROOT"] . "../libs/vue/modifierjoueur.php";
             $joueur["dateNaissance"] = date("Y-m-d", strtotime($joueur["dateNaissance"]));
             include_once $_SERVER["DOCUMENT_ROOT"] . "../libs/components/page.php";
         } else if ($type == "vue"){
+            $joueur = (getStatsJoueurs($idJoueur));
             $css = ["voir.css"];
-            $stats['totalMatches'] = 5;
-            $stats['matchesWon']= 0;
-            $stats["winPercentage"] = 0;
-            $stats['avgNote'] = 0;
             $matchs = getFDMPourJoueur($idJoueur);
             $title = "Consulter un joueur";
             $page = $_SERVER["DOCUMENT_ROOT"] . "../libs/vue/vuejoueur.php";
