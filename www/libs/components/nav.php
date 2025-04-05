@@ -8,6 +8,7 @@
         <li><a href="<?php echo $URL['me']?>">Mon Profil</a></li>
     </ul>
     <ul id="logout">
-        <li><a href="<?php echo $URL['logout']?>">Se Déconnecter</a></li>
+        <li><a href="#" id="logout">Se Déconnecter</a></li>
     </ul>
+    <script src="/resources/js/nav.js"></script>
 </nav>
