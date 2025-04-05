@@ -10,14 +10,15 @@ if(!apiVerifyToken()){
 require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Stats.php";
 require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/MatchDeRugby.php";
 
-use function MatchDeRugby\getMatchWithResultat;
+use function MatchDeRugby\getMatchByType;
 use function Stats\getStatsEquipe;
 
 $stats = getStatsEquipe();
-$statsJoueurs = $stats["joueurs"];
+$statsIndiv = $stats["joueurs"];
 $statsMatchs = $stats["matchs"];
+$statsJoueurs = $stats["stats"];
 
-$matchs = getMatchWithResultat(20);
+$matchsResultats = getMatchByType(20)["resultats"];
 
 $title = "Resultats & Statistiques";
 $css = ["voir.css"];

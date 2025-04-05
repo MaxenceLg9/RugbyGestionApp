@@ -16,10 +16,11 @@
                 <h2>Performance de l'équipe</h2>
                 <div class="stat-grid">
                     <ul>
-                        <li><div class="stat-card">Victoires: <span>12</span></div></li>
-                        <li><div class="stat-card">Défaites: <span>5</span></div></li>
-                        <li><div class="stat-card">Joueurs utilisés: <span>50</span></div></li>
-                        <li><div class="stat-card">Joueurs actifs: <span>42</span></div</li>
+                        <li><div class="stat-card">Victoires: <span><?=$statsMatchs["matchesWon"]?></span></div></li>
+                        <li><div class="stat-card">Défaites: <span><?=$statsMatchs["matchesLoss"]?></span></div></li>
+                        <li><div class="stat-card">Nuls: <span><?=$statsMatchs["matchesDrawed"]?></span></div></li>
+                        <li><div class="stat-card">Joueurs utilisés: <span><?=$statsJoueurs["differents_joueurs"]?></span></div></li>
+                        <li><div class="stat-card">Joueurs actifs: <span><?=$statsJoueurs["actifs_joueurs"]?></span></div</li>
                     </ul>
                 </div>
             </div>
@@ -27,10 +28,13 @@
                 <h2>Joueurs les plus utilisés</h2>
                 <div class="stat-grid">
                     <ul>
-                        <li><div class="stat-card">Victoires: <span>12</span></div></li>
-                        <li><div class="stat-card">Défaites: <span>5</span></div></li>
-                        <li><div class="stat-card">Joueurs utilisés: <span>50</span></div></li>
-                        <li><div class="stat-card">Joueurs actifs: <span>42</span></div</li>
+                        <?php if(!empty($statsJoueurs["joueurs"])){
+                            foreach ($statsJoueurs["joueurs"] as $joueur){ ?>
+                                <li><div class="stat-card"><?=$joueur["nom"]?> <?=$joueur["prenom"]?>: <span><?=$joueur["nombreDeMatchs"]?></span></div></li>
+                            <?php }
+                        } else { ?>
+                            <li><div class="stat-card">Aucun joueur n'a joué</div></li>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>
@@ -42,16 +46,19 @@
             <table>
                 <thead><tr></tr></thead>
                 <tbody>
-                <tr>
-                    <td>
-                        <strong>15/03/2025 - 14:00</strong> - <em>Team A</em> (Domicile) : <span class='resultat'>Victoire</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>08/03/2025 - 16:00</strong> - <em>Team B</em> (Extérieur) : <span class='resultat'>Défaite</span>
-                    </td>
-                </tr>
+                <?php if(!empty($matchsResultats)) {
+                    foreach ($matchsResultats as $match) { ?>
+                        <tr>
+                            <td>
+                                <strong><?= htmlspecialchars($match["dateHeure"]) ?></strong> - <em><?= htmlspecialchars($match["adversaire"]) ?></em> (<?= htmlspecialchars($match["lieu"]) ?>) : <span class='resultat'><?= htmlspecialchars($match["résultat"]) ?></span>
+                            </td>
+                        </tr>
+                    <?php }
+                } else { ?>
+                    <tr>
+                        <td>Aucun match résultat récent trouvé.</td>
+                    </tr>
+                <?php } ?>
                 </tbody>
             </table>
         </section>
@@ -62,29 +69,25 @@
             <table>
                 <tbody>
                 <tr>
+                    <?php if(!empty($matchsProchains)){
+                    foreach ($matchsProchains as $match) { ?>
                     <td>
                         <div class="match-info">
-                            <strong>22/03/2025 - 18:00</strong> - vs <em>Team C</em> (Domicile)
+                            <strong><?= $match["dateHeure"]?></strong> - vs <em><?= $match["adversaire"]?></em> (<?= $match["lieu"]?>)
                         </div>
                     </td>
                     <td>
                         <div class="action">
-                            <a href="#" class="button modify"><p>Saisir la feuille de match</p></a>
+                            <a href="/gerermatch?type=vue&idMatch=<?= $match["idMatch"]?>" class="button modify"><p>Saisir la feuille de match</p></a>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="match-info">
-                            <strong>29/03/2025 - 15:00</strong> - vs <em>Team D</em> (Extérieur)
-                        </div>
-                    </td>
-                    <td>
-                        <div class="action">
-                            <a href="#" class="button modify"><p>Saisir la feuille de match</p></a>
-                        </div>
-                    </td>
-                </tr>
+                <?php }
+                } else { ?>
+                    <tr>
+                        <td>Aucun match à venir trouvé.</td>
+                    </tr>
+                <?php } ?>
                 </tbody>
             </table>
         </section>
@@ -93,8 +96,8 @@
         <section class="section-index">
             <h2>Actions rapides</h2>
             <div class="forms actions">
-                <a href="/" class="button add"><p>Ajouter un match</p></a>
-                <a href="/" class="button add"><p>Ajouter un joueur</p></a>
+                <a href="/gererjoueur.php?type=ajout&idJoueur=0" class="button add"><p>Ajouter un match</p></a>
+                <a href="/gerermatch.php?type=ajout&idMatch=0" class="button add"><p>Ajouter un joueur</p></a>
             </div>
         </section>
     </article>

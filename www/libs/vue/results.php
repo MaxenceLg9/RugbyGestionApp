@@ -13,6 +13,8 @@
                         <th>Pourcentage de victoire</th>
                         <th>Matchs perdus</th>
                         <th>Matchs nul</th>
+                        <th>Joueurs actifs</th>
+                        <th>Nombre de joueurs utilisés</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -21,6 +23,8 @@
                             <td><?= $statsMatchs["winLossRatio"] ?></td>
                             <td><?= $statsMatchs["matchesLoss"] ?></td>
                             <td><?= $statsMatchs["matchesDrawed"] ?></td>
+                            <td><?= $statsJoueurs["actifs_joueurs"]?></td>
+                            <td><?= $statsJoueurs["differents_joueurs"]?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -38,7 +42,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($matchs as $match) { ?>
+                    <?php foreach ($matchsResultats as $match) { ?>
                         <tr>
                             <td><?= htmlspecialchars($match["dateHeure"]) ?></td>
                             <td><?= htmlspecialchars($match["adversaire"]) ?></td>
@@ -67,7 +71,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($statsJoueurs as $joueur) { ?>
+                <?php foreach ($statsIndiv as $joueur) { ?>
                     <tr>
                         <td><?= htmlspecialchars($joueur['nom']) ?></td>
                         <td><?= htmlspecialchars($joueur['prenom']) ?></td>
