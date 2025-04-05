@@ -54,3 +54,8 @@ section {
     background: #0d1117;
     width: 100%;
 }
+
+td,tr,th {
+    padding: 10px;
+    text-align: center;
+}
