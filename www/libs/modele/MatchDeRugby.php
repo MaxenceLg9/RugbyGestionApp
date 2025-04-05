@@ -4,7 +4,11 @@ namespace MatchDeRugby {
 
     require $_SERVER["DOCUMENT_ROOT"]."/../vendor/autoload.php";
     use GuzzleHttp\Client;
+    use GuzzleHttp\Exception\GuzzleException;
 
+    /**
+     * @throws \Exception
+     */
     function getMatch(string $idMatch): array {
 
         $client = new Client([
@@ -25,7 +29,7 @@ namespace MatchDeRugby {
         return json_decode($response->getBody(),true)["data"][0];
     }
 
-    function getMatchWithResultat(int $limit): array {
+    function getMatchByType(int $limit): array {
 
         $client = new Client([
             'base_uri' => 'https://rugbygestionapi.alwaysdata.net/',
