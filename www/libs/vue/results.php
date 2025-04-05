@@ -3,39 +3,53 @@
         <h1>Statistiques de l'équipe</h1>
     </header>
     <article class="article-list">
-        <section class="stats-globales">
-            <h2>Statistiques globales</h2>
-            <p>Total de matchs avec résultat : <?php /*= $totalMatchs */?></p>
-            <p>Matchs gagnés : <?= $statsMatchs["matchesWon"] ?></p>
-            <p>Pourcentage de victoire : <?= $statsMatchs["winLossRatio"] ?></p>
-            <p>Matchs perdus : <?= $statsMatchs["matchesLoss"] ?></p>
-            <p>Matchs nuls : <?= $statsMatchs["matchesDrawed"] ?></p>
-        </section>
-
-        <section class="recap-matchs">
-            <h2>Récapitulatif des matchs</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>Date et Heure</th>
-                    <th>Adversaire</th>
-                    <th>Lieu</th>
-                    <th>Résultat</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($matchs as $match) { ?>
+        <div class="first-section">
+            <section class="stats-globales">
+                <h2>Statistiques globales</h2>
+                <table>
+                    <thead>
                     <tr>
-                        <td><?= htmlspecialchars($match["dateHeure"]) ?></td>
-                        <td><?= htmlspecialchars($match["adversaire"]) ?></td>
-                        <td><?= htmlspecialchars($match["lieu"]) ?></td>
-                        <td><?= htmlspecialchars($match["résultat"]) ?></td>
+                        <th>Matchs gagné</th>
+                        <th>Pourcentage de victoire</th>
+                        <th>Matchs perdus</th>
+                        <th>Matchs nul</th>
                     </tr>
-                <?php } ?>
-                </tbody>
-            </table>
-        </section>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><?= $statsMatchs["matchesWon"] ?></td>
+                            <td><?= $statsMatchs["winLossRatio"] ?></td>
+                            <td><?= $statsMatchs["matchesLoss"] ?></td>
+                            <td><?= $statsMatchs["matchesDrawed"] ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
 
+            <section class="recap-matchs">
+                <h2>Récapitulatif des matchs</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Date et Heure</th>
+                        <th>Adversaire</th>
+                        <th>Lieu</th>
+                        <th>Résultat</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($matchs as $match) { ?>
+                        <tr>
+                            <td><?= htmlspecialchars($match["dateHeure"]) ?></td>
+                            <td><?= htmlspecialchars($match["adversaire"]) ?></td>
+                            <td><?= htmlspecialchars($match["lieu"]) ?></td>
+                            <td><?= htmlspecialchars($match["résultat"]) ?></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </section>
+        </div>
         <section class="stats-joueurs">
             <h2>Statistiques des joueurs</h2>
             <table>
