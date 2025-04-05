@@ -57,28 +57,37 @@
                 <tbody>
                 <tr>
                     <td><strong>Total de Matchs :</strong></td>
-                    <td><?= $stats['totalMatches'] ?></td>
+                    <td><?= $joueur['totalMatches'] ?></td>
                 </tr>
                 <tr>
                     <td><strong>Matchs Gagnés :</strong></td>
-                    <td><?= $stats['matchesWon'] ?></td>
+                    <td><?= $joueur['victories'] ?></td>
                 </tr>
                 <tr>
                     <td><strong>Pourcentage de Victoires :</strong></td>
-                    <td><?= $stats["winPercentage"] ?>%</td>
+                    <td><?= $joueur["victory_ratio"] ?></td>
                 </tr>
                 <tr>
                     <td><strong>Note Moyenne :</strong></td>
-                    <td><?= number_format($stats['avgNote'], 2) ?></td>
+                    <td><?= $joueur['avg_note'] ?></td>
+                </tr>
+                <tr>
+                    <td><strong>Titularisations :</strong></td>
+                    <td><?= $joueur['titulaires'] ?></td>
+                </tr>
+                <tr>
+                    <td><strong>Remplaçants :</strong></td>
+                    <td><?= $joueur['remplaçants'] ?></td>
+                </tr>
+                <tr>
+                    <td><strong>Max. matchs consécutifs :</strong></td>
+                    <td><?= $joueur['max_consecutive_matches'] ?></td>
                 </tr>
                 </tbody>
             </table>
-            <p> </p>
-            <p> </p>
-            <p> </p>
             <p></p>
             <h2>Participation aux Matchs</h2>
-            <?php if($stats["totalMatches"] == 0){
+            <?php if($joueur["totalMatches"] == 0){
                 echo "<p class=\"color-red\">Aucun match n'est enregistré pour ce joueur.</p>";
             }else{ ?>
             <table>

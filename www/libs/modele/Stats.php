@@ -21,4 +21,24 @@ namespace Stats {
         ]);
         return json_decode($response->getBody(),true)["data"];
     }
+
+    function getStatsJoueurs(string $idJoueur): array {
+
+        $client = new Client([
+            'base_uri' => 'https://rugbygestionapi.alwaysdata.net/',
+            'timeout'  => 2.0,
+            'verify' => false
+        ]);
+
+        $response = $client->get('/stats',[
+            'query' => [
+                'idJoueur' => $idJoueur,
+            ],
+            'headers' => [
+                'Authorization' => $_COOKIE["token"] ?? "",
+                'Accept' => 'application/json',
+            ]
+        ]);
+        return json_decode($response->getBody(),true)["data"];
+    }
 }
