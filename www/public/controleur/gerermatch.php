@@ -1,6 +1,8 @@
 <?php
 
 require $_SERVER["DOCUMENT_ROOT"]."/../libs/modele/Token.php";
+
+use GuzzleHttp\Exception\GuzzleException;
 use function Token\apiVerifyToken;
 if(!apiVerifyToken()){
     header("Location: /auth.php");
@@ -35,7 +37,12 @@ if($_SERVER["REQUEST_METHOD"] === "GET"){
         include_once $_SERVER["DOCUMENT_ROOT"]."../libs/components/page.php";
     }
     else {
-        $match = getMatch($idMatch);
+        try {
+            $match = getMatch($idMatch);
+        } catch (Exception $e) {
+            header('Location: /matchs.php');
+            die("Erreur lors de la récupération du match.");
+        }
         $joueurs = getJoueursOnMatch($idMatch);
         $joueursNP = $joueurs["disponibles"];
         $jouerLeMatch = $joueurs["feuille"];

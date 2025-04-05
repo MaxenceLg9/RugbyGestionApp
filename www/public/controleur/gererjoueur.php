@@ -35,19 +35,26 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         $page = $_SERVER["DOCUMENT_ROOT"]."../libs/vue/nouveaujoueur.php";
         include_once $_SERVER["DOCUMENT_ROOT"]."../libs/components/page.php";
     } else {
-        if ($type === "modification") {
-            $joueur = (getJoueur($idJoueur));
-            $title = "Modifier un joueur";
-            $page = $_SERVER["DOCUMENT_ROOT"] . "../libs/vue/modifierjoueur.php";
-            $joueur["dateNaissance"] = date("Y-m-d", strtotime($joueur["dateNaissance"]));
-            include_once $_SERVER["DOCUMENT_ROOT"] . "../libs/components/page.php";
-        } else if ($type == "vue"){
-            $joueur = (getStatsJoueurs($idJoueur));
-            $css = ["voir.css"];
-            $matchs = getFDMPourJoueur($idJoueur);
-            $title = "Consulter un joueur";
-            $page = $_SERVER["DOCUMENT_ROOT"] . "../libs/vue/vuejoueur.php";
-            include_once $_SERVER["DOCUMENT_ROOT"] . "../libs/components/page.php";
+        try {
+            if ($type === "modification") {
+
+                $joueur = (getJoueur($idJoueur));
+
+                $title = "Modifier un joueur";
+                $page = $_SERVER["DOCUMENT_ROOT"] . "../libs/vue/modifierjoueur.php";
+                $joueur["dateNaissance"] = date("Y-m-d", strtotime($joueur["dateNaissance"]));
+                include_once $_SERVER["DOCUMENT_ROOT"] . "../libs/components/page.php";
+            } else if ($type == "vue"){
+                $joueur = (getStatsJoueurs($idJoueur));
+                $css = ["voir.css"];
+                $matchs = getFDMPourJoueur($idJoueur);
+                $title = "Consulter un joueur";
+                $page = $_SERVER["DOCUMENT_ROOT"] . "../libs/vue/vuejoueur.php";
+                include_once $_SERVER["DOCUMENT_ROOT"] . "../libs/components/page.php";
+            }
+        } catch (Exception $e) {
+            header('Location: /joueurs.php');
+            die("Erreur lors de la récupération du match.");
         }
     }
 }
