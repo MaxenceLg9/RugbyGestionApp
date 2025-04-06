@@ -1,11 +1,14 @@
 <?php
 
 require $_SERVER["DOCUMENT_ROOT"]."/../libs/modele/Token.php";
+
+use function Token\apiReloadToken;
 use function Token\apiVerifyToken;
 if(!apiVerifyToken()){
     header("Location: /auth.php");
     die();
 }
+apiReloadToken();
 
 require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/Joueur.php";
 require_once $_SERVER["DOCUMENT_ROOT"]."../libs/modele/FDM.php";

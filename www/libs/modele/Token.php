@@ -5,7 +5,8 @@ namespace Token {
     require $_SERVER["DOCUMENT_ROOT"]."/../vendor/autoload.php";
 
     use GuzzleHttp\Client;
-    use GuzzleHttp\Exception\ClientException;
+    use GuzzleHttp\Exception\GuzzleException;
+    use GuzzleHttp\Exception\RequestException;
 
     function apiVerifyToken(): bool
     {
@@ -29,12 +30,12 @@ namespace Token {
                 ]
             ]);
             return(json_decode($response->getBody(), true)["valid"]);
-        }catch (ClientException $e){
+        }catch (GuzzleException $e){
             return false;
         }
     }
 
-    function apiReloadToken(): string {
+    function apiReloadToken(): void {
         $token = get_bearer_token() ?? "";
         $client = new Client([
             'base_uri' => 'https://rugbygestionauth.alwaysdata.net/',
@@ -42,20 +43,30 @@ namespace Token {
             'verify' => false
         ]);
 
-        $response = $client->put('/',[
-            ['body' => json_encode(
-                [
+        try {
+            $response = $client->put('/', [
+                'body' => json_encode([
                     'token' => $token
+                ]),
+                'headers' => [
+                    'Authorization' => $_COOKIE["token"] ?? "",
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'API_TOKEN' => ''
                 ]
-            )],
-            'headers' => [
-                'Authorization' => $_COOKIE["token"] ?? "",
-                'Accept' => 'application/json',
-                "Content-Type: application/json",
-                "API_TOKEN" => ""
-            ]
-        ]);
-        return json_decode($response->getBody(),true)["token"];
+            ]);
+            setcookie("token",json_decode($response->getBody(),true)["token"],time() + 1800,"/");
+        } catch (RequestException $e) {
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                die($response->getBody());
+            } else {
+                die($e->getMessage());
+            }
+        } catch (GuzzleException $e) {
+            header("Location: /auth.php");
+            die($e->getMessage());
+        }
     }
 
     function get_authorization_header(): ?string {
