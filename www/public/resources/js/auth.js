@@ -39,8 +39,8 @@ async function register(){
             method: "POST",
             contentType: "application/json", // Important for sending JSON
             data: JSON.stringify({
-                "firstname": formRegister.find("input[name='firstname']").val(),
-                "name": formRegister.find("input[name='name']").val(),
+                "prenom": formRegister.find("input[name='firstname']").val(),
+                "nom": formRegister.find("input[name='name']").val(),
                 "equipe": formRegister.find("input[name='equipe']").val(),
                 "email": formRegister.find("input[name='email']").val(),
                 "password": formRegister.find("input[name='password']").val(),
